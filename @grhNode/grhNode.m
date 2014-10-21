@@ -22,14 +22,15 @@ classdef grhNode < handle
                 obj.depth = parent.depth + 1;
                 obj.data = data;
                 % check and update tree overall depth
-                if obj.depth > obj.tree.depth
-                    obj.tree.depth = obj.tree.depth + 1;
+                if obj.depth > 1 && obj.depth > obj.tree.total_depth
+                    obj.tree.total_depth = obj.tree.total_depth + 1;
                 end
             else
                 % this is the main trunk
-                obj.tree = parent;
-                obj.depth = 1;
-                obj.data = parent.data;
+%                 obj.tree = parent;
+%                 obj.depth = 1;
+%                 obj.data = parent.data;
+                assert(1==0);
             end
             
         end
