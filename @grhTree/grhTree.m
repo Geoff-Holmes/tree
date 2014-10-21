@@ -8,7 +8,7 @@ classdef grhTree
         xrange     % extent of input space
         Nxdata      % total number of datapoints
         depth = 1;  % depth of tree
-        nodes       % as it says
+        trunk       % as it says
         
     end
     
@@ -35,7 +35,7 @@ classdef grhTree
             obj.xdim   = size(obj.xdata, 2);
             obj.Nxdata = size(obj.xdata, 1);
             obj.xrange = [min(obj.xdata); max(obj.xdata);];
-            obj.nodes  = grhNode(obj.xdata);
+            obj.trunk  = grhNode(obj.xdata);
             
         end
     end 
