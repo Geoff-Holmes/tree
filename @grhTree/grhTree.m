@@ -2,13 +2,13 @@ classdef grhTree < handle
     
     properties
         
-        xdata = []; % data inputs
-        ydata = []; % data outputs
-        xdim        % dimension of datapoint inputs
-        xrange     % extent of input space
-        Nxdata      % total number of datapoints
-        depth = 1;  % depth of tree
-        trunk       % as it says
+        data;        % data inputs
+        input_dim;   % dimension of datapoint inputs
+        data_range;  % extent of data space
+        Ndata;       % total number of datapoints
+        depth = 1;   % depth of tree
+        Lchild;      % as it says
+        Rchild;
         
     end
     
@@ -19,23 +19,22 @@ classdef grhTree < handle
             % initial contructor of tree
             if nargin > 0
                 if isstruct(data1)
-                    obj.xdata = data1.x;
-                    obj.ydata = data1.y;
+                    obj.data = [data1.x data1.y];
+                    obj.input_dim = size(data1.x, 2);
                 else
                     if nargin == 2 
-                        obj.xdata = data1;
-                        obj.ydata = data2;
+                        obj.data = [data1 data2];
+                        obj.input_dim = size(data1, 2);
                     else
-                        obj.xdata = data1(:, 1:end-1);
-                        obj.ydata = data1(:, end);
+                        % assume final colunn is output
+                        obj.input_dim = size(data1, 2) - 1;
                     end
                 end
             end
             
-            obj.xdim   = size(obj.xdata, 2);
-            obj.Nxdata = size(obj.xdata, 1);
-            obj.xrange = [min(obj.xdata); max(obj.xdata);];
-            obj.trunk  = grhNode(obj);
+            obj.Ndata = size(obj.data, 1);
+            obj.data_range = [min(obj.data); max(obj.data);];
+%             obj.trunk  = grhNode(obj);
             
         end
     end 
