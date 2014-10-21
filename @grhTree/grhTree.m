@@ -50,7 +50,7 @@ classdef grhTree < grhNode
             obj.data_range = [min(obj.data); max(obj.data);];
             % now set self as tree ! seems to work !
             obj.tree = obj;
-            
+            obj.parent = 'self';            
         end
     end 
 end

@@ -7,8 +7,8 @@ if isempty(obj.splitVar)
     leftData  = obj.data(obj.data(:,splitVar) <= splitVal, :);
     rigftData = obj.data(obj.data(:,splitVar) >  splitVal, :);
 
-    obj.Lchild = grhNode(obj, leftData );
-    obj.Rchild = grhNode(obj, rigftData);
+    obj.Lchild = grhNode(obj, leftData,  0);
+    obj.Rchild = grhNode(obj, rigftData, 1);
 else
     fprintf('\nNode is already split\n')
 end
