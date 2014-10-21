@@ -1,4 +1,4 @@
-classdef tree
+classdef grhTree
     
     properties
         

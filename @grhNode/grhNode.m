@@ -1,4 +1,4 @@
-classdef node
+classdef grhNode
     
     properties
         
