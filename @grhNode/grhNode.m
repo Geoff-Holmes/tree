@@ -3,6 +3,8 @@ classdef grhNode
     properties
         
         elements;
+        splitVar;
+        splitVal;
         Lchild = [];
         Rchild = [];
         
