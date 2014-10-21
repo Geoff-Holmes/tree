@@ -2,6 +2,8 @@ classdef grhNode < handle
     
     properties
         
+        tree;           % pointer to tree the node is part of
+        depth;          % at which this node lies
         members;        % data elements on this leaf / node
         model;          % handle to model applying if leaf
         splitVar;
@@ -13,8 +15,9 @@ classdef grhNode < handle
     
     methods
         
-        function obj = grhNode(members)
+        function obj = grhNode(parent, members)
             
+            obj.depth = parent.depth + 1;
             obj.members = members;
             
         end
