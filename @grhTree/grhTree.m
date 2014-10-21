@@ -5,17 +5,17 @@ classdef grhTree < grhNode
         input_dim;          % dimension of datapoint inputs
         Ndata;              % total number of datapoints
         data_range;         % extent of data space
-        total_depth = 0;    % depth of tree
+        total_depth = 1;    % depth of tree
         
         % from grhNode the following fields are inherited
-        tree;           % pointer to tree the node is part of
-        depth;          % at which this node lies
-        data;           % data elements on this leaf / node
-        model;          % handle to model applying if leaf
-        splitVar;
-        splitVal;
-        Lchild = [];    % pointers to children
-        Rchild = [];    %
+%         tree;           % pointer to tree the node is part of
+%         depth;          % at which this node lies
+%         data;           % data elements on this leaf / node
+%         model;          % handle to model applying if leaf
+%         splitVar;
+%         splitVal;
+%         Lchild = [];    % pointers to children
+%         Rchild = [];    %
         
     end
     
