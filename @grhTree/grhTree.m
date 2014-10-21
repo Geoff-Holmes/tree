@@ -4,10 +4,12 @@ classdef grhTree < handle
         
         data;        % data inputs
         input_dim;   % dimension of datapoint inputs
-        data_range;  % extent of data space
         Ndata;       % total number of datapoints
+        data_range;  % extent of data space
         depth = 1;   % depth of tree
-        Lchild;      % as it says
+        splitVar;    %
+        splitVal     %
+        Lchild;      %
         Rchild;
         
     end
@@ -24,10 +26,11 @@ classdef grhTree < handle
                 else
                     if nargin == 2 
                         obj.data = [data1 data2];
-                        obj.input_dim = size(data1, 2);
+                        obj.input_dim = size(obj.data, 2);
                     else
                         % assume final colunn is output
-                        obj.input_dim = size(data1, 2) - 1;
+                        obj.data = data1;
+                        obj.input_dim = size(obj.data, 2) - 1;
                     end
                 end
             end

@@ -4,7 +4,7 @@ classdef grhNode < handle
         
         tree;           % pointer to tree the node is part of
         depth;          % at which this node lies
-        members;        % data elements on this leaf / node
+        data;           % data elements on this leaf / node
         model;          % handle to model applying if leaf
         splitVar;
         splitVal;
@@ -15,12 +15,12 @@ classdef grhNode < handle
     
     methods
         
-        function obj = grhNode(parent, members)
+        function obj = grhNode(parent, data)
             
             if nargin > 1
                 obj.tree = parent.tree;
                 obj.depth = parent.depth + 1;
-                obj.members = members;
+                obj.data = data;
                 % check and update tree overall depth
                 if obj.depth > obj.tree.depth
                     obj.tree.depth = obj.tree.depth + 1;
@@ -29,7 +29,7 @@ classdef grhNode < handle
                 % this is the main trunk
                 obj.tree = parent;
                 obj.depth = 1;
-                obj.members = parent.xdata;
+                obj.data = parent.data;
             end
             
         end

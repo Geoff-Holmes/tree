@@ -3,10 +3,10 @@ function obj = splitNode(obj, splitVar, splitVal)
 obj.splitVar = splitVar;
 obj.splitVal = splitVal;
 
-leftMembers  = obj.members(obj.members(:,splitVar) <= splitVal, :);
-rightMembers = obj.members(obj.members(:,splitVar) >  splitVal, :);
+leftData  = obj.data(obj.data(:,splitVar) <= splitVal, :);
+rigftData = obj.data(obj.data(:,splitVar) >  splitVal, :);
 
-obj.Lchild = grhNode(obj, leftMembers );
-obj.Rchild = grhNode(obj, rightMembers);
+obj.Lchild = grhNode(obj, leftData );
+obj.Rchild = grhNode(obj, rigftData);
 
 end
