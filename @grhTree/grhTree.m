@@ -35,7 +35,7 @@ classdef grhTree < handle
             obj.xdim   = size(obj.xdata, 2);
             obj.Nxdata = size(obj.xdata, 1);
             obj.xrange = [min(obj.xdata); max(obj.xdata);];
-            obj.trunk  = grhNode(obj.xdata);
+            obj.trunk  = grhNode(obj);
             
         end
     end 
