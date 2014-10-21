@@ -14,7 +14,7 @@ classdef grhTree
     
     methods
         
-        function obj = tree(data1, data2)
+        function obj = grhTree(data1, data2)
             
             % initial contructor of tree
             if nargin > 0

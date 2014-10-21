@@ -10,7 +10,7 @@ classdef grhNode
     
     methods
         
-        function obj = node(memberIDs)
+        function obj = grhNode(memberIDs)
             
             obj.elements = memberIDs;
             
