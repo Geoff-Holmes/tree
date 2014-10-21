@@ -1,20 +1,21 @@
-classdef grhNode
+classdef grhNode < handle
     
     properties
         
-        elements;
+        members;        % data elements on this leaf / node
+        model;          % handle to model applying if leaf
         splitVar;
         splitVal;
-        Lchild = [];
-        Rchild = [];
+        Lchild = [];    % pointers to children
+        Rchild = [];    %
         
     end
     
     methods
         
-        function obj = grhNode(memberIDs)
+        function obj = grhNode(members)
             
-            obj.elements = memberIDs;
+            obj.members = members;
             
         end
     end
