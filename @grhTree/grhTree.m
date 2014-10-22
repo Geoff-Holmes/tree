@@ -1,7 +1,8 @@
-classdef grhTree < grhNode
+classdef grhTree < handle
     
     properties
         
+        data;               % data
         input_dim;          % dimension of datapoint inputs
         Ndata;              % total number of datapoints
         data_range;         % extent of data space
@@ -27,34 +28,34 @@ classdef grhTree < grhNode
             % initial contructor of tree
             if nargin > 0
                 if isstruct(data1)
-                    data = [data1.x data1.y];
-                    x_dim = size(data1.x, 2);
+                    obj.data = [data1.x data1.y];
+                    obj.input_dim = size(data1.x, 2);
                 else
                     if nargin == 2 
-                        data = [data1 data2];
-                       x_dim = size(data, 2);
+                        obj.data = [data1 data2];
+                        obj.input_dim = size(data1, 2);
                     else
                         % assume final colunn is output
-                        data = data1;
-                       x_dim = size(data, 2) - 1;
+                        obj.data = data1;
+                        obj.input_dim = size(data1, 2) - 1;
                     end
                 end
             end
             
-            % dummy parent for superclass constructor call
-            parent = struct('tree', struct('depth', 0, 'nodes', grhNode()), 'depth', 0);
-            % call superclass (grhNode) constructor
-            obj = obj@grhNode(parent, data);
-            % set other field values
-            obj.input_dim = x_dim;
+%             % dummy parent for superclass constructor call
+%             parent = struct('tree', struct('depth', 0, 'nodes', grhNode(), 'total_depth', 0), 'depth', 0);
+%             % call superclass (grhNode) constructor
+%             obj = obj@grhNode(parent, data);
+%             % set other field values
+%             obj.input_dim = x_dim;
             obj.Ndata = size(obj.data, 1);
             obj.data_range = [min(obj.data); max(obj.data);];
-            % now set self as tree ! seems to work !
-            obj.tree = obj;
-            obj.parent = 'self';
-            obj.nodes = grhNode();
-            % override ID set by superclass constructor
-            obj.ID = 1;
+%             % now set self as tree ! seems to work !
+%             obj.tree = obj;
+%             obj.parent = 'self';
+            obj.nodes = grhNode(obj);
+%             % override ID set by superclass constructor
+%             obj.ID = 1;
         end
     end 
 end
