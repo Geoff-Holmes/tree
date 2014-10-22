@@ -6,6 +6,7 @@ classdef grhTree < grhNode
         Ndata;              % total number of datapoints
         data_range;         % extent of data space
         total_depth = 1;    % depth of tree
+        nodes;              % list of pointers to all nodes
         
         % from grhNode the following fields are inherited
 %         tree;           % pointer to tree the node is part of
@@ -41,7 +42,7 @@ classdef grhTree < grhNode
             end
             
             % dummy parent for superclass constructor call
-            parent = struct('tree', struct('depth', 0), 'depth', 0);
+            parent = struct('tree', struct('depth', 0, 'nodes', grhNode()), 'depth', 0);
             % call superclass (grhNode) constructor
             obj = obj@grhNode(parent, data);
             % set other field values
@@ -50,7 +51,10 @@ classdef grhTree < grhNode
             obj.data_range = [min(obj.data); max(obj.data);];
             % now set self as tree ! seems to work !
             obj.tree = obj;
-            obj.parent = 'self';            
+            obj.parent = 'self';
+            obj.nodes = grhNode();
+            % override ID set by superclass constructor
+            obj.ID = 1;
         end
     end 
 end

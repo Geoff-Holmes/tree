@@ -2,6 +2,7 @@ classdef grhNode < handle
     
     properties
         
+        ID;             % node id
         tree;           % pointer to tree the node is part of
         parent;         % parent node
         leftRight;      % relative to parent node 0 left, 1 right
@@ -22,6 +23,10 @@ classdef grhNode < handle
             if nargin > 1
                 obj.parent = parent;
                 obj.tree = parent.tree;
+                % get next ID from parent tree
+                obj.ID = length(obj.tree.nodes) + 1;
+                % add self to parent tree node list
+                obj.tree.nodes(end+1) = obj;
                 obj.depth = parent.depth + 1;
                 obj.data = data;
                 % check and update tree overall depth
@@ -32,11 +37,13 @@ classdef grhNode < handle
                     obj.leftRight = leftRight;
                 end
             else
+                % return empty node
+               
                 % this is the main trunk
 %                 obj.tree = parent;
 %                 obj.depth = 1;
 %                 obj.data = parent.data;
-                assert(1==0); % throw error to test for ending up here
+%                 assert(1==0); % throw error to test for ending up here
             end
             
         end
