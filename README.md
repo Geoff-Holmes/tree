@@ -6,8 +6,10 @@ Tree and Node classes for binary tree structure.
 
 Example usage:
 
-% create a tree containing a random 100 point dataset\
-% data has 3 input dimensions and one output dimension\
+% create a tree containing a random 100 point dataset
+
+% data has 3 input dimensions and one output dimension
+
 t = grhTree(rand(100, 4));
 
 % add an initial branch on the first input dimension at value 0.5
