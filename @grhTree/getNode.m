@@ -4,8 +4,10 @@ function thisNode = getNode(obj, testpoint)
 
 thisNode = obj.nodes(1);
 
+% move up the tree along nodes until a leaf is reached
 while ~isempty(thisNode.Rchild)
     
+    % choose the correct branch to follow
     if testpoint(thisNode.splitVar) > thisNode.splitVal
         thisNode = thisNode.Rchild;
     else

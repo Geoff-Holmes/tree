@@ -1,7 +1,10 @@
 function limits = drawNode(obj, zeroPoint, opts)
 
+% recursive function called by drawTree.m for graphical output of entire
+% tree structure
+
 if nargin < 3
-    opts = struct('d0', 0.14, 'd1', 0.25, 'd2', 0.5, 'd3', 0.75, 'd4', 0.025);
+    opts = struct('d1', 0.25, 'd2', 0.5, 'd3', 0.75);
 end
 
 text(zeroPoint(1), zeroPoint(2), sprintf('x%d <> %.3f', obj.splitVar, obj.splitVal), 'horizontalAlignment', 'center', 'verticalAlignment', 'bottom')

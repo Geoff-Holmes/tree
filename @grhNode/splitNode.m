@@ -1,12 +1,18 @@
 function obj = splitNode(obj, splitVar, splitVal)
 
+% form two new nodes by splitting calling node on variable splitVar at
+% value splitVal
+
 if isempty(obj.splitVar)
+    % set the fields on parent node
     obj.splitVar = splitVar;
     obj.splitVal = splitVal;
 
+    % split the data
     leftData  = obj.data(obj.data(:,splitVar) <= splitVal, :);
     rigftData = obj.data(obj.data(:,splitVar) >  splitVal, :);
 
+    % create the new nodes
     obj.Lchild = grhNode(obj, leftData,  0);
     obj.Rchild = grhNode(obj, rigftData, 1);
 else

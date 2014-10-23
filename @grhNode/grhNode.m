@@ -20,6 +20,8 @@ classdef grhNode < handle
         
         function obj = grhNode(parent, data, leftRight)
             
+            % node constructor function
+            
             if nargin
                 obj.parent = parent;
                 if isa(parent, 'grhTree')
