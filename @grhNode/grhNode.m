@@ -30,29 +30,22 @@ classdef grhNode < handle
                     obj.data = parent.data;
                 else
                     % node is a sub-node
+                    obj.data = data;
                     obj.tree = parent.tree;
+                    obj.depth = parent.depth + 1;
+                    % relation to parent binary split
+                    obj.leftRight = leftRight;
                     % get next ID from parent tree
                     obj.ID = length(obj.tree.nodes) + 1;
                     % add self to parent tree node list
-                    obj.tree.nodes(end+1) = obj;
-                    obj.depth = parent.depth + 1;
-                    obj.data = data;
+                    obj.tree.nodes(end+1) = obj;                    
                     % check and update tree overall depth
                     if obj.depth > obj.tree.total_depth
                         obj.tree.total_depth = obj.tree.total_depth + 1;
                     end
                 end
-                if nargin == 3
-                    obj.leftRight = leftRight;
-                end
             else
-                % return empty node
-               
-                % this is the main trunk
-%                 obj.tree = parent;
-%                 obj.depth = 1;
-%                 obj.data = parent.data;
-%                 assert(1==0); % throw error to test for ending up here
+                assert(1==0); % throw error to test for ending up here
             end
             
         end

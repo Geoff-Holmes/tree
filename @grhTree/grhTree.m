@@ -9,16 +9,6 @@ classdef grhTree < handle
         total_depth = 1;    % depth of tree
         nodes;              % list of pointers to all nodes
         
-        % from grhNode the following fields are inherited
-%         tree;           % pointer to tree the node is part of
-%         depth;          % at which this node lies
-%         data;           % data elements on this leaf / node
-%         model;          % handle to model applying if leaf
-%         splitVar;
-%         splitVal;
-%         Lchild = [];    % pointers to children
-%         Rchild = [];    %
-        
     end
     
     methods
@@ -26,6 +16,8 @@ classdef grhTree < handle
         function obj = grhTree(data1, data2)
             
             % initial contructor of tree
+            
+            % parse input data
             if nargin > 0
                 if isstruct(data1)
                     obj.data = [data1.x data1.y];
@@ -40,22 +32,13 @@ classdef grhTree < handle
                         obj.input_dim = size(data1, 2) - 1;
                     end
                 end
+                obj.Ndata = size(obj.data, 1);
+                obj.data_range = [min(obj.data); max(obj.data);];
             end
             
-%             % dummy parent for superclass constructor call
-%             parent = struct('tree', struct('depth', 0, 'nodes', grhNode(), 'total_depth', 0), 'depth', 0);
-%             % call superclass (grhNode) constructor
-%             obj = obj@grhNode(parent, data);
-%             % set other field values
-%             obj.input_dim = x_dim;
-            obj.Ndata = size(obj.data, 1);
-            obj.data_range = [min(obj.data); max(obj.data);];
-%             % now set self as tree ! seems to work !
-%             obj.tree = obj;
-%             obj.parent = 'self';
+            % initialise node list
             obj.nodes = grhNode(obj);
-%             % override ID set by superclass constructor
-%             obj.ID = 1;
+
         end
     end 
 end

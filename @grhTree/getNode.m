@@ -2,14 +2,9 @@ function thisNode = getNode(obj, testpoint)
 
 % find the node / leaf to which a testpoint belongs
 
-thisNode = obj;
-cc = 0;
+thisNode = obj.nodes(1);
 
-while ~isempty(thisNode.Rchild) && cc < 5
-    
-    cc = cc + 1
-    
-    thisNode
+while ~isempty(thisNode.Rchild)
     
     if testpoint(thisNode.splitVar) > thisNode.splitVal
         thisNode = thisNode.Rchild;
