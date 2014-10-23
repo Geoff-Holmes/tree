@@ -4,7 +4,11 @@ function limits = drawNode(obj, zeroPoint, opts)
 % tree structure
 
 if nargin < 3
+    
     opts = struct('d1', 0.25, 'd2', 0.5, 'd3', 0.75);
+    % d1 - not used
+    % d2 - length of vertical drop lines
+    % d3 - distance to drop to next starting point (refPoint)
 end
 
 % output the split criteria inequality <= on left > on right
