@@ -36,9 +36,20 @@ nt = t.getNode(t.data(1,:))
 
 % confirm that this point is on that leaf
 
-t.data(1,:)
+t.data(1,:)  % test point
 
-nt.data(1,:)
+nt.data(1,:) % present in leaf data
+nt.data      % all data on this leaf 
+
+% show the complete input and output data
+ins = t.data(:, 1:t.input_dim)
+out = t.data(:, t.input_dim+1:end)
+
+
+
+
+
+
 
 
 
