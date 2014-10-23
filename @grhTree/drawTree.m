@@ -1,7 +1,7 @@
 function handle = drawTree(obj, opts)
 
 % handle to return
-handle = figure; hold on;
+handle = figure; hold on; axis off;
 % starting point at base of tree
 refPoint = [0 0];
 % call function that recursively draws each node
