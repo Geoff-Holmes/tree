@@ -19,21 +19,27 @@ classdef grhTree < handle
             
             % parse input data
             if nargin > 0
-                if isstruct(data1)
-                    obj.data = [data1.x data1.y];
-                    obj.input_dim = size(data1.x, 2);
+                if numel(data1) == 2
+                    assert(size(data2, 2) == sum(data1))
+                    obj.input_dim  = data1(1);
+                    obj.data_range = data2;
                 else
-                    if nargin == 2 
-                        obj.data = [data1 data2];
-                        obj.input_dim = size(data1, 2);
+                    if isstruct(data1)
+                        obj.data = [data1.x data1.y];
+                        obj.input_dim = size(data1.x, 2);
                     else
-                        % assume final colunn is output
-                        obj.data = data1;
-                        obj.input_dim = size(data1, 2) - 1;
+                        if nargin == 2 
+                            obj.data = [data1 data2];
+                            obj.input_dim = size(data1, 2);
+                        else
+                            % assume final colunn is output
+                            obj.data = data1;
+                            obj.input_dim = size(data1, 2) - 1;
+                        end
                     end
+                    obj.Ndata = size(obj.data, 1);
+                    obj.data_range = [min(obj.data); max(obj.data);];
                 end
-                obj.Ndata = size(obj.data, 1);
-                obj.data_range = [min(obj.data); max(obj.data);];
             end
             
             % initialise node list
