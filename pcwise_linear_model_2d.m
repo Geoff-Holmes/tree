@@ -11,7 +11,7 @@ z = zeros(N);
 
 t = grhTree(data)
 
-for i = 1:100
+for i = 1:33
     
     leaf           = t.nodes(t.leaves(randi(length(t.leaves))));
     dim            = randi(t.input_dim);

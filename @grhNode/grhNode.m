@@ -13,6 +13,8 @@ classdef grhNode < handle
         splitVal;
         Lchild = [];    % pointers to children
         Rchild = [];    %
+       
+        handle;         % to store graphics handle
         
     end
     
