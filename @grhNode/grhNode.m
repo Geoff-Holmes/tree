@@ -39,8 +39,12 @@ classdef grhNode < handle
                     obj.leftRight = leftRight;
                     % get next ID from parent tree
                     obj.ID = length(obj.tree.nodes) + 1;
-                    % add self to parent tree node list
+                    % add self to tree node list
                     obj.tree.nodes(end+1) = obj;                    
+                    % remove parent from tree leaves list
+                    obj.tree.leaves = obj.tree.leaves(obj.tree.leaves~=obj.parent.ID);
+                    % add self ID to tree leaves list
+                    obj.tree.leaves(end+1) = obj.ID;
                     % check and update tree overall depth
                     if obj.depth > obj.tree.total_depth
                         obj.tree.total_depth = obj.tree.total_depth + 1;
@@ -49,7 +53,6 @@ classdef grhNode < handle
             else
                 assert(1==0); % throw error to test for ending up here
             end
-            
         end
     end
 end

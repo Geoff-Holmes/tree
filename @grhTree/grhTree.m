@@ -7,7 +7,8 @@ classdef grhTree < handle
         Ndata;              % total number of datapoints
         data_range;         % extent of data space
         total_depth = 1;    % depth of tree
-        nodes;              % list of pointers to all nodes
+        nodes;              % list of pointers to all nodes incl leaves
+        leaves;             % list of IDs of all leaves
         
     end
     
@@ -43,7 +44,10 @@ classdef grhTree < handle
             end
             
             % initialise node list
-            obj.nodes = grhNode(obj);
+            newNode    = grhNode(obj);
+            obj.nodes  = newNode;
+            obj.leaves = newNode.ID;
+            
 
         end
     end 
