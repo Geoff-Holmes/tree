@@ -6,6 +6,7 @@ function [sortedData, midPoints] = dataSortByDim(obj, splitVar)
 % extract data values on chosen axis and sort
 [temp, inds] = sort(obj.data(:, splitVar));
 % calculate midpoints
+temp = unique(temp);
 midPoints = (temp(1:end-1) + temp(2:end)) / 2;
 % return full sorted data
 sortedData = obj.data(inds, :);
