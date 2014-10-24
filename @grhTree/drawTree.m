@@ -1,5 +1,10 @@
 function handle = drawTree(obj, opts)
 
+
+if obj.total_depth == 1
+    msgbox('Skipped drawing of unbranched tree', 'treePlot', 'warn')
+    return
+end
 % handle to return
 handle = figure; hold on; axis off;
 % starting point at base of tree
