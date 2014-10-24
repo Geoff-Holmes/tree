@@ -11,7 +11,7 @@ z = zeros(N);
 
 t = grhTree(data)
 
-for i = 1:33
+for i = 1:100
     
     leaf           = t.nodes(t.leaves(randi(length(t.leaves))));
     dim            = randi(t.input_dim);
@@ -29,12 +29,12 @@ figure; hold on
 for k = t.leaves
     
     thisLeaf = t.nodes(k);
-    thisLeaf.model = randi(6, 1, 3) - 3;
+    thisLeaf.model = randi(12, 1, 3) - 6;
     thisLeaf.data(:,end) = thisLeaf.model * [ones(size(thisLeaf.data, 1),1) thisLeaf.data(:,1:end-1)]';
     data = thisLeaf.data;
 %     plot3(data(:,1), data(:,2), data(:,3), '.')
     inds = (data(:,2)-1)*N + data(:,1);
-    z(inds) = data(:,3);
+    z(inds) = data(:,3)+rand*randn(length(inds),1)*33;
        
 end
 
