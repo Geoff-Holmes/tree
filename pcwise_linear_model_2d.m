@@ -7,6 +7,7 @@ x = 1:N;
 y = 1:N;
 [x,y] = meshgrid(x,y);
 data = [x(:) y(:) zeros(N^2,1)];
+z = zeros(N);
 
 t = grhTree(data)
 
@@ -31,8 +32,11 @@ for k = t.leaves
     thisLeaf.model = randi(6, 1, 3) - 3;
     thisLeaf.data(:,end) = thisLeaf.model * [ones(size(thisLeaf.data, 1),1) thisLeaf.data(:,1:end-1)]';
     data = thisLeaf.data;
-    plot3(data(:,1), data(:,2), data(:,3), '.')
-        
+%     plot3(data(:,1), data(:,2), data(:,3), '.')
+    inds = (data(:,2)-1)*N + data(:,1);
+    z(inds) = data(:,3);
+       
 end
 
+surf(x,y,z)
 set(gca, 'view', [15 25])
