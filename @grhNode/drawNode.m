@@ -7,7 +7,8 @@ function limits = drawNode(obj, zeroPoint, opts)
 text(zeroPoint(1), zeroPoint(2), sprintf('x%d <> %.3f', obj.splitVar, obj.splitVal), 'horizontalAlignment', 'center', 'verticalAlignment', 'bottom')
 
 % define extents of horizontal branch line and draw
-x = zeroPoint(1)+[-1;1]*1/obj.depth;
+obj.depth
+x = zeroPoint(1)+[-1;1]/2^obj.depth;
 y = zeroPoint(2)*[1;1];
 line(x, y)
 % draw horizontal lines to next leaf / node
