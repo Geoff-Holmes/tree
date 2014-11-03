@@ -40,7 +40,7 @@ classdef grhNode < handle
                     % relation to parent binary split
                     obj.leftRight = leftRight;
                     % get next ID from parent tree
-                    obj.ID = length(obj.tree.nodes) + 1;
+                    obj.ID = max([obj.tree.nodes.ID]) + 1;
                     % add self to tree node list
                     obj.tree.nodes(end+1) = obj;                    
                     % remove parent from tree leaves list
