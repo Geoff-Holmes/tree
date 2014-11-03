@@ -1,4 +1,4 @@
-function handle = drawTree(obj, opts)
+function obj = drawTree(obj, opts)
 
 % plot tree by calling recursive node plotting function
 
@@ -16,7 +16,12 @@ if nargin == 1
 end
 
 % handle to return
-handle = figure; hold on; axis off;
+if obj.plotHandle
+    figure(obj.plotHandle)
+    clf; hold on; axis off;
+else
+    obj.plotHandle = figure; hold on; axis off;
+end
 % starting point at base of tree
 refPoint = [0 0];
 

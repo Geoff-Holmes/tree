@@ -2,12 +2,23 @@ function obj = randomPrune(obj)
 
 % random prune operation see gramacy_bayesian_2008 p1124
 
-% choose randomly from all parents of leaves
-compLeaf = obj.nodes(obj.leaves(randi(length(obj.leaves)))).parent;
-
-if isa(compLeaf, 'grhTree')
+% check for no branches
+if numel(obj.nodes) == 1
     fprintf('\nNo branches to prune.')
     return
+end    
+
+% choose randomly from all parents of pairs of leaves
+randLeafInds = randperm(length(obj.leaves));
+
+flag = 1;
+counter = 0;
+while flag && counter < length(randLeafInds)
+    counter = counter + 1;
+    % parent of next leaf
+    compLeaf = obj.nodes([obj.nodes.ID] == obj.leaves(randLeafInds(counter))).parent;
+    % discard if both children are not leaves
+    flag = numel(compLeaf.Lchild.splitVar) + numel(compLeaf.Rchild.splitVar);
 end
 
 % reassemble data from children onto this node
@@ -31,5 +42,8 @@ compLeaf.Rchild   = [];
 compLeaf.Lchild   = [];
 compLeaf.splitVar = [];
 compLeaf.splitVal = [];
+
+% update tree depth
+obj.total_depth = max([obj.nodes.depth]);
 
 % model management to be added

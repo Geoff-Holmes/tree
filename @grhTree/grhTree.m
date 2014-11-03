@@ -9,6 +9,7 @@ classdef grhTree < handle
         total_depth = 1;    % depth of tree
         nodes;              % list of pointers to all nodes incl leaves
         leaves;             % list of IDs of all leaves
+        plotHandle;         % figure handle for plot
         
     end
     
