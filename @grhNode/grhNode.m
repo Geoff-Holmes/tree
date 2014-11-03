@@ -39,7 +39,7 @@ classdef grhNode < handle
                     obj.depth = parent.depth + 1;
                     % relation to parent binary split
                     obj.leftRight = leftRight;
-                    % get next ID from parent tree
+                    % get an unused ID from parent tree
                     obj.ID = max([obj.tree.nodes.ID]) + 1;
                     % add self to tree node list
                     obj.tree.nodes(end+1) = obj;                    
