@@ -20,6 +20,10 @@ if isempty(obj.splitVar)
     % create the new nodes
     obj.Lchild = grhNode(obj, leftData,  0);
     obj.Rchild = grhNode(obj, rightData, 1);
+    
+    % purge data from new parent to save memory
+    obj.data = [];
+    
 else
     fprintf('\nNode is already split\n')
 end
