@@ -5,7 +5,7 @@ function limits = drawNode(obj, zeroPoint, opts)
 
 % output the split criteria inequality <= on left > on right
 % text(zeroPoint(1), zeroPoint(2), sprintf('x%d <> %.3f', obj.splitVar, obj.splitVal), 'horizontalAlignment', 'center', 'verticalAlignment', 'bottom');
-text(zeroPoint(1), zeroPoint(2), sprintf('node %d', obj.ID), 'horizontalAlignment', 'center', 'verticalAlignment', 'bottom');
+text(zeroPoint(1), zeroPoint(2), sprintf('node %d : %d', obj.ID, size(obj.data, 1)), 'horizontalAlignment', 'center', 'verticalAlignment', 'bottom');
 
 % define extents of horizontal branch line and draw
 x = zeroPoint(1)+[-1;1]/2^obj.depth;
@@ -26,7 +26,7 @@ else
     leftLim = x(1);
     bottomLimL = y(1)-opts.d2;
 %     text(leftLim, y(1)-opts.d2, sprintf('%d', size(obj.Lchild.data, 1)), 'horizontalAlignment', 'center', 'verticalAlignment', 'bottom');
-    text(leftLim, y(1)-opts.d2, sprintf('node %d', obj.Lchild.ID), 'horizontalAlignment', 'center', 'verticalAlignment', 'bottom');
+    text(leftLim, y(1)-opts.d2, sprintf('node %d : %d', obj.Lchild.ID, size(obj.Lchild.data, 1)), 'horizontalAlignment', 'center', 'verticalAlignment', 'bottom');
 end
 
 % test for continuance of right branch
@@ -40,7 +40,7 @@ else
     rightLim = x(2);
     bottomLimR = y(1)-opts.d2;
 %     text(rightLim, y(1)-opts.d2, sprintf('%d', size(obj.Rchild.data, 1)), 'horizontalAlignment', 'center', 'verticalAlignment', 'bottom');
-    text(rightLim, y(1)-opts.d2, sprintf('node %d', obj.Rchild.ID), 'horizontalAlignment', 'center', 'verticalAlignment', 'bottom');
+    text(rightLim, y(1)-opts.d2, sprintf('node %d : %d', obj.Rchild.ID, size(obj.Rchild.data, 1)), 'horizontalAlignment', 'center', 'verticalAlignment', 'bottom');
 end
 
 % update limits of graphical output

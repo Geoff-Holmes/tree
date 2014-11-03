@@ -4,7 +4,8 @@ function obj = drawTree(obj, opts)
 
 % if tree has no branches don't plot
 if obj.total_depth == 1
-    msgbox('Skipped drawing of unbranched tree', 'treePlot', 'warn')
+%     msgbox('Skipped drawing of unbranched tree', 'treePlot', 'warn')
+    fprintf('Skipped drawing of unbranched tree')
     return
 end
 
