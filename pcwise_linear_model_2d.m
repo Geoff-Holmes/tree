@@ -1,5 +1,6 @@
 % test script for piecewise linear 2-d model
 
+close all
 clear all
 % t = grhTree([2 1], [zeros(1,3); ones(1,3)])
 N = 100;
@@ -7,11 +8,11 @@ x = 1:N;
 y = 1:N;
 [x,y] = meshgrid(x,y);
 data = [x(:) y(:) zeros(N^2,1)];
-z = zeros(N);
+z = zeros(N);   
 
 t = grhTree(data)
 
-for i = 1:33
+for i = 1:22
     
     leaf           = t.nodes(t.leaves(randi(length(t.leaves))));
     dim            = randi(t.input_dim);
@@ -40,3 +41,16 @@ end
 
 surf(x,y,z)
 set(gca, 'view', [15 25])
+
+% figure; hold on;
+% L = length(t.leaves);
+% for i = 1:L
+% %     i = randi(L, 1, 2);
+%     try
+%         t.nodes(t.leaves(i)).plotNodeData;
+%     end
+% %     try
+% %         t.nodes(t.leaves(i(2))).removeNodeData;
+% %     end
+%     pause(0.2)
+% end

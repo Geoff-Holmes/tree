@@ -14,7 +14,7 @@ classdef grhNode < handle
         Lchild = [];    % pointers to children
         Rchild = [];    %
        
-        handle;         % to store graphics handle
+        plotHandle;     % to store graphics handle
         
     end
     
