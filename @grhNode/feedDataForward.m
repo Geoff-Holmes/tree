@@ -10,6 +10,7 @@ rightData = obj.data(obj.data(:,obj.splitVar) >  obj.splitVal, :);
 % other child
 
 if isempty(leftData)
+   fprintf('\nLeft data empty at node %d\n', obj.ID)
    % remove empty descendents
    obj.Lchild.removeNode;
    flagLeft = 1;
@@ -22,6 +23,7 @@ else
     end
 end
 if isempty(rightData)
+    fprintf('\nRight data empty at node %d\n', obj.ID)
     % remove empty descendants
     obj.Rchild.removeNode;
     flagRight = 1;
@@ -34,24 +36,30 @@ else
     end
 end
 
-flagLeft
-flagRight
+assert(~(flagLeft && flagRight))
 
 % set appropriate grandparent to become parent of child!
+% and vice versa
 if flagLeft
+    obj.Rchild.parent = obj.parent;
+    obj.Rchild.adjustDepth;
     if obj.leftRight
         obj.parent.Rchild = obj.Rchild;
+        obj.Rchild.leftRight = 1;
     else
         obj.parent.Lchild = obj.Rchild;
-        
+        obj.Rchild.leftRight = 0;
     end
 else
     if flagRight
+        obj.Lchild.parent = obj.parent;
+        obj.Lchild.adjustDepth;
         if obj.leftRight
             obj.parent.Rchild = obj.Lchild;
+            obj.Lchild.leftRight = 1;
         else
             obj.parent.Lchild = obj.Lchild;
-            
+            obj.Lchild.leftRight = 0;
         end
     end
 end
