@@ -5,7 +5,7 @@ classdef grhNode < handle
         ID;             % node id
         tree;           % pointer to tree the node is part of
         parent;         % parent node
-        leftRight;      % relative to parent node 0 left, 1 right
+        leftRight;      % relative to parent node 0 leftChild, 1 rightChild
         depth;          % at which this node lies
         data;           % data elements on this leaf / node
         model;          % handle to model applying if leaf
