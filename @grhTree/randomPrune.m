@@ -17,9 +17,12 @@ while flag && counter < length(randLeafInds)
     counter = counter + 1;
     % parent of next leaf
     compLeaf = obj.nodes([obj.nodes.ID] == obj.leaves(randLeafInds(counter))).parent;
+    fprintf('\nCandidate for pruning : parent of node %d', obj.leaves(randLeafInds(counter)))
     % discard if both children are not leaves
     flag = numel(compLeaf.Lchild.splitVar) + numel(compLeaf.Rchild.splitVar);
 end
+
+fprintf('\nRemoving split at node %d : leaves %d - %d\n', compLeaf.ID, compLeaf.Lchild.ID, compLeaf.Rchild.ID)
 
 % reassemble data from children onto this node
 compLeaf.data = vertcat(compLeaf.Rchild.data, compLeaf.Lchild.data);
