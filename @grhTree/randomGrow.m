@@ -22,4 +22,6 @@ dim = randi(obj.input_dim);
 splitPoint     = midpoints(randi(length(midpoints)));
 leaf.splitNode(dim, splitPoint);
 
+fprintf('\nGrowing from node %d, new leaves %d - %d\n', leaf.ID, leaf.Lchild.ID, leaf.Rchild.ID)
+
 % model management to be added
