@@ -10,6 +10,7 @@ classdef grhTree < handle
         nodes;              % list of pointers to all nodes incl leaves
         leaves;             % list of IDs of all leaves
         plotHandle;         % figure handle for plot
+        health;             % consistency check storage
         
     end
     
