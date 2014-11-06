@@ -17,9 +17,10 @@ if nargin == 1
 end
 
 % handle to return
-if obj.plotHandle > 2
-    obj.plotHandle = figure(obj.plotHandle+1); %(obj.plotHandle)
-    close(obj.plotHandle-2);
+if obj.plotHandle % > 2
+%     obj.plotHandle = figure(obj.plotHandle+1); %(obj.plotHandle)
+    obj.plotHandle = figure(obj.plotHandle)
+%     close(obj.plotHandle-2);
     clf; hold on; axis off;
 else
     obj.plotHandle = figure; hold on; axis off;
