@@ -12,7 +12,13 @@ end
 % choose an internal parent-child pair
 % choose an internal child node
 childIDs = setdiff([obj.nodes.ID], [1 obj.leaves]);
+try
 child = obj.nodes([obj.nodes.ID] == childIDs(randi(length(childIDs))));
+catch ex
+   childIDs
+   obj.total_depth
+end
+    
 
 if child.splitVar == child.parent.splitVar
 
@@ -56,6 +62,9 @@ if child.splitVar == child.parent.splitVar
         child.parent.Lchild = tempChild;
         child.Rchild.adjustDepth(1);
     end
+    
+    % update data set at this node
+    child.data = vertcat(child.Lchild.data, child.Rchild.data);
 
 else
     

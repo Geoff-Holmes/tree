@@ -17,7 +17,7 @@ while flag && counter < length(randLeafInds)
     counter = counter + 1;
     % parent of next leaf
     compLeaf = obj.nodes([obj.nodes.ID] == obj.leaves(randLeafInds(counter))).parent;
-    fprintf('\nCandidate for pruning : parent of node %d', obj.leaves(randLeafInds(counter)))
+%     fprintf('\nCandidate for pruning : parent of node %d', obj.leaves(randLeafInds(counter)))
     % discard if both children are not leaves
     flag = numel(compLeaf.Lchild.splitVar) + numel(compLeaf.Rchild.splitVar);
 end
