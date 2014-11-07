@@ -16,7 +16,7 @@ counter = 0;
 while flag && counter < length(randLeafInds)
     counter = counter + 1;
     % parent of next leaf
-    compLeaf = obj.nodes([obj.nodes.ID] == obj.leaves(randLeafInds(counter))).parent;
+    compLeaf = obj.leaves(randLeafInds(counter)).parent;
 %     fprintf('\nCandidate for pruning : parent of node %d', obj.leaves(randLeafInds(counter)))
     % discard if both children are not leaves
     flag = numel(compLeaf.Lchild.splitVar) + numel(compLeaf.Rchild.splitVar);
@@ -28,17 +28,18 @@ fprintf('\nRemoving split at node %d : leaves %d - %d\n', compLeaf.ID, compLeaf.
 compLeaf.data = vertcat(compLeaf.Rchild.data, compLeaf.Lchild.data);
 
 % get IDs of leaves being pruned
-pruneIDs = [compLeaf.Rchild.ID compLeaf.Lchild.ID];
+pruneLeaves = [compLeaf.Rchild compLeaf.Lchild];
 % add newly combined leaf to leaf list and removed pruned leaves
-obj.leaves = [obj.leaves compLeaf.ID];
-obj.leaves = setdiff(obj.leaves, pruneIDs);
+obj.leaves = [obj.leaves compLeaf];
+obj.leaves = setdiff(obj.leaves, pruneLeaves);
 
 % remove pruned leaves from node list
-obj.nodes = obj.nodes([obj.nodes.ID] ~= pruneIDs(1));
-obj.nodes = obj.nodes([obj.nodes.ID] ~= pruneIDs(2));
+obj.nodes = obj.nodes(obj.nodes ~= pruneLeaves(1));
+obj.nodes = obj.nodes(obj.nodes ~= pruneLeaves(2));
 % and delete
-delete(compLeaf.Rchild);
-delete(compLeaf.Lchild);
+% delete(compLeaf.Rchild);
+% delete(compLeaf.Lchild);
+delete(pruneLeaves);
 
 % empty the child links etc
 compLeaf.Rchild   = [];
