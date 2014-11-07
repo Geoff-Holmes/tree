@@ -45,10 +45,10 @@ classdef grhTree < handle
                 end
             end
             
-            % initialise node list
+            % initialise node and lieaf list
             newNode    = grhNode(obj);
             obj.nodes  = newNode;
-            obj.leaves = newNode.ID;
+            obj.leaves = newNode;
             
 
         end
