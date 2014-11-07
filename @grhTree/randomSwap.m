@@ -11,11 +11,11 @@ end
 
 % choose an internal parent-child pair
 % choose an internal child node
-childIDs = setdiff(obj.nodes(2,:), obj.leaves);
+children = setdiff(obj.nodes(2:end), obj.leaves);
 try
-child = obj.nodes(childIDs(randi(length(childIDs))));
+child = children(randi(length(children)));
 catch ex
-   childIDs
+   children
    obj.total_depth
 end
     
