@@ -52,7 +52,18 @@ classdef grhTree < matlab.mixin.Copyable
             
 
         end
-    end 
+    end
+    
+    methods(Access = protected)
+        % Override copyElement method:
+        function cpObj = copyElement(obj)
+            % Make a shallow copy of all properties
+            cpObj = copyElement@matlab.mixin.Copyable(obj);
+            % Make a deep copy of the handle objects
+            cpObj.nodes = copy(obj.nodes);
+            cpObj.leaves = copy(obj.leaves);
+        end
+    end
 end
     
     
