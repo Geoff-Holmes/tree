@@ -10,8 +10,8 @@ if numel(obj.nodes) == 1
 end    
 
 % choose an internal node
-parentIDs = setdiff([obj.nodes.ID], obj.leaves);
-parent = obj.nodes([obj.nodes.ID] == parentIDs(randi(length(parentIDs))));
+parents = setdiff(obj.nodes, obj.leaves);
+parent = parents(randi(length(parents)));
 
 fprintf('\nChanging split at node %d\n', parent.ID)
 
