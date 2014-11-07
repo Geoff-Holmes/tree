@@ -29,3 +29,5 @@ parent.splitVal = splitPoint;
 % update data to leaves
 parent.feedDataForward;
 
+% update total depth in case change has occurred
+obj.total_depth = max([obj.nodes.depth]);

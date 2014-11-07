@@ -10,3 +10,11 @@ for i = 2:length(obj.nodes)
         obj.health.depthFail = 1;
     end
 end
+
+temp = max([obj.nodes.depth]);
+try
+    assert(obj.total_depth == temp)
+catch
+    fprintf('\nTotal depth error : %d should be %d\n', obj.total_depth, temp)
+    obj.health.depthFail = 1;
+end

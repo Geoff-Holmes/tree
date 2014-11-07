@@ -19,7 +19,7 @@ end
 % handle to return
 if obj.plotHandle % > 2
 %     obj.plotHandle = figure(obj.plotHandle+1); %(obj.plotHandle)
-    obj.plotHandle = figure(obj.plotHandle)
+    obj.plotHandle = figure(obj.plotHandle);
 %     close(obj.plotHandle-2);
     clf; hold on; axis off;
 else

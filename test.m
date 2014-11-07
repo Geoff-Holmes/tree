@@ -2,17 +2,19 @@
 
 clear all
 close all
-p = [2 1 1 1];
+p = [5 1 1 1];
 p = cumsum(p);
 p = p/max(p);
 flag = 0;
 
-t = grhTree(rand(333,2))
+t = grhTree(rand(333,22));
 for i = 1:5
     t.randomGrow;
 end
-tLast = [];
+
+counter = 0;
 while true
+counter = counter+1;
 if rand < p(1)
     fprintf('\nGrowing:')
     t.randomGrow;
@@ -36,9 +38,7 @@ else
 end
 % pause() 
 % close all
-t.drawTree;
-
-t.total_depth = max([t.nodes.depth]);
+% t.drawTree;
 
 t.testDepthConsistency;
 if isfield(t.health, 'depthFail'), break;
