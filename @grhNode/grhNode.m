@@ -1,4 +1,4 @@
-classdef grhNode < handle
+classdef grhNode < matlab.mixin.Copyable
     
     properties
         

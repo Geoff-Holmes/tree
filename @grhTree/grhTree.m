@@ -1,4 +1,4 @@
-classdef grhTree < handle
+classdef grhTree < matlab.mixin.Copyable
     
     properties
         
