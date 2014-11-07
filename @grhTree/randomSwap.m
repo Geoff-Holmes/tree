@@ -11,9 +11,9 @@ end
 
 % choose an internal parent-child pair
 % choose an internal child node
-childIDs = setdiff([obj.nodes.ID], [1 obj.leaves]);
+childIDs = setdiff(obj.nodes(2,:), obj.leaves);
 try
-child = obj.nodes([obj.nodes.ID] == childIDs(randi(length(childIDs))));
+child = obj.nodes(childIDs(randi(length(childIDs))));
 catch ex
    childIDs
    obj.total_depth
@@ -36,7 +36,7 @@ if child.splitVar == child.parent.splitVar
     % if right child
     if child.leftRight == 0
         fprintf('\nRotating left nodes %d - %d\n', child.ID, child.parent.ID)
-        tempChild = child.Rchild;
+        tempChild = child.Rchild;,
         child.Rchild = child.Lchild;
         child.Rchild.leftRight = ~child.Lchild.leftRight;
         child.Lchild = child.parent.Lchild;

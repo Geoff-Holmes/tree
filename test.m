@@ -2,7 +2,7 @@
 
 clear all
 close all
-p = [5 1 1 1];
+p = [1 0 1 0];
 p = cumsum(p);
 p = p/max(p);
 flag = 0;

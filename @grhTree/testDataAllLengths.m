@@ -1,6 +1,6 @@
 function obj = testDataAllLengths(obj)
 
-for node = obj.nodes(~ismember([obj.nodes.ID], obj.leaves)) 
+for node = obj.nodes(~ismember(obj.nodes, obj.leaves)) 
     try
         assert(size(node.data, 1) == size(node.Lchild.data, 1) + size(node.Rchild.data, 1));
     catch
