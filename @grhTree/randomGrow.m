@@ -8,7 +8,7 @@ counter = 0;
 while ~flag && counter < length(randLeafInds)
     % choose randomly from all leaves
     counter = counter + 1;
-    leaf = obj.nodes([obj.nodes.ID] == obj.leaves(randLeafInds(counter)));
+    leaf = obj.leaves(randLeafInds(counter));
     % discard leaf if only one datapoint
     flag = size(leaf.data, 1) - 1;
 end

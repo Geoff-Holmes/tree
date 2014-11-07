@@ -44,9 +44,9 @@ classdef grhNode < handle
                     % add self to tree node list
                     obj.tree.nodes(end+1) = obj;                    
                     % remove parent from tree leaves list
-                    obj.tree.leaves = obj.tree.leaves(obj.tree.leaves~=obj.parent.ID);
+                    obj.tree.leaves = obj.tree.leaves(obj.tree.leaves~=obj.parent);
                     % add self ID to tree leaves list
-                    obj.tree.leaves(end+1) = obj.ID;
+                    obj.tree.leaves(end+1) = obj;
                     % check and update tree overall depth
                     if obj.depth > obj.tree.total_depth
                         obj.tree.total_depth = obj.tree.total_depth + 1;
