@@ -2,7 +2,11 @@
 
 clear all
 close all
-p = [5 1 1 1];
+
+rng(0)
+tic
+
+p = [1 1 1 1];
 p = cumsum(p);
 p = p/max(p);
 flag = 0;
@@ -13,7 +17,7 @@ for i = 1:5
 end
 
 counter = 0;
-while true
+while counter < 1000
 counter = counter+1;
 if rand < p(1)
     fprintf('\nGrowing:')
@@ -65,3 +69,5 @@ if ~isempty(fields(t.health))
     t.health
 end
 end
+
+toc
