@@ -31,9 +31,11 @@ compLeaf.data = vertcat(compLeaf.Rchild.data, compLeaf.Lchild.data);
 obj.leaves = [obj.leaves compLeaf];
 obj.leaves = setdiff(obj.leaves, [compLeaf.Rchild compLeaf.Lchild]);
 
-% remove pruned leaves from node list
-obj.nodes = obj.nodes(obj.nodes ~= compLeaf.Lchild);
+% remove pruned leaves from node and leaf lists
 obj.nodes = obj.nodes(obj.nodes ~= compLeaf.Rchild);
+obj.nodes = obj.nodes(obj.nodes ~= compLeaf.Lchild);
+obj.leaves = obj.leaves(obj.leaves ~= compLeaf.Rchild);
+obj.leaves = obj.leaves(obj.leaves ~= compLeaf.Lchild);
 % and delete
 delete(compLeaf.Rchild);
 delete(compLeaf.Lchild);

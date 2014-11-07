@@ -9,10 +9,10 @@ if numel(obj.splitVar)
     obj.Rchild.removeNode;
 else
     % leaf so remove from leaf list
-    obj.tree.leaves = obj.tree.leaves(obj.tree.leaves~=obj.ID);
+    obj.tree.leaves = obj.tree.leaves(obj.tree.leaves~=obj);
 end
 
 % in either case remove from node list and delete
-obj.tree.nodes = obj.tree.nodes([obj.tree.nodes.ID]~=obj.ID);
+obj.tree.nodes = obj.tree.nodes(obj.tree.nodes~=obj);
 fprintf('\nDeleting node %d\n', obj.ID)
 delete(obj)
