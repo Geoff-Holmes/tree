@@ -65,16 +65,20 @@ classdef grhTree < matlab.mixin.Copyable
             for node = cpObj.nodes
                 node.tree  = obj;
                 if node.parent
-                    node.parent = cpObj.nodes(node.parent);
+                    node.parent = cpObj.nodes([cpObj.nodes.ID]==node.parent);
                 else
                     node.parent = obj;
                 end
-                node.Lchild = cpObj.nodes(node.Lchild);
-                node.Rchild = cpObj.nodes(node.Rchild);
+                if numel(node.Lchild)
+                    node.Lchild = cpObj.nodes([cpObj.nodes.ID]==node.Lchild);
+                    node.Rchild = cpObj.nodes([cpObj.nodes.ID]==node.Rchild);
+                end
             end
             % link leaf list to copied node list
             [~,leafIDs] = intersect(obj.nodes, obj.leaves);
             cpObj.leaves = cpObj.nodes(leafIDs);
+            % remove any plot handles
+            cpObj.plotHandle = [];
         end
     end
 end

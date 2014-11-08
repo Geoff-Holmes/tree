@@ -63,7 +63,7 @@ classdef grhNode < matlab.mixin.Copyable
         function cpObj = copyElement(obj)
             % Make a shallow copy of all properties
             cpObj = copyElement@matlab.mixin.Copyable(obj);
-            % set these temporarily as IDs
+            % set these temporarily as IDs to refer to already copied nodes
             if ~(cpObj.depth-1)
                 cpObj.parent = 0;
             else
