@@ -61,6 +61,17 @@ classdef grhTree < matlab.mixin.Copyable
             cpObj = copyElement@matlab.mixin.Copyable(obj);
             % Make a deep copy of the node handle objects
             cpObj.nodes = copy(obj.nodes);
+            % make real temporary ID references
+            for node = cpObj.nodes
+                node.tree  = obj;
+                if node.parent
+                    node.parent = cpObj.nodes(node.parent);
+                else
+                    node.parent = obj;
+                end
+                node.Lchild = cpObj.nodes(node.Lchild);
+                node.Rchild = cpObj.nodes(node.Rchild);
+            end
             % link leaf list to copied node list
             [~,leafIDs] = intersect(obj.nodes, obj.leaves);
             cpObj.leaves = cpObj.nodes(leafIDs);

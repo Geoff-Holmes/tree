@@ -63,12 +63,16 @@ classdef grhNode < matlab.mixin.Copyable
         function cpObj = copyElement(obj)
             % Make a shallow copy of all properties
             cpObj = copyElement@matlab.mixin.Copyable(obj);
-            % Make a deep copy of the handle objects
-            cpObj.tree = copy(obj.tree);
-            cpObj.parent = copy(obj.parent);
-            cpObj.Lchild = copy(obj.Lchild);
-            cpObj.Rchild = copy(obj.Rchild);
-            
+            % set these temporarily as IDs
+            if ~(cpObj.depth-1)
+                cpObj.parent = 0;
+            else
+                cpObj.parent = cpObj.parent.ID;
+            end
+            if numel (cpObj.Lchild)
+                cpObj.Lchild = cpObj.Lchild.ID;
+                cpObj.Rchild = cpObj.Rchild.ID;
+            end
         end
     end
     
