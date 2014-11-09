@@ -6,7 +6,7 @@ if nargin < 3
     dim = 1:obj.input_dim;
 end
 if nargin < 2
-    inds = 1:Ndata;
+    inds = 1:obj.Ndata;
 end
     
 inputData = obj.data(inds, dim);

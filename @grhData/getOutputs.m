@@ -10,7 +10,7 @@ else
 end
 
 if nargin < 2
-    inds = 1:Ndata;
+    inds = 1:obj.Ndata;
 end
     
 outputData = obj.data(inds, dim);
