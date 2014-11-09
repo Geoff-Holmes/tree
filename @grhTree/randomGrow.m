@@ -15,7 +15,7 @@ end
 if ~flag, fprintf('\nData already fully split.\n'), return, end
 
 % choose randomly from all dimensions
-dim = randi(obj.input_dim);
+dim = randi(obj.data.input_dim);
 % choose randomly from all possible split point on this leaf / dim
 % and grow by splitting at that point
 [~, midpoints] = leaf.dataSortByDim(dim);
