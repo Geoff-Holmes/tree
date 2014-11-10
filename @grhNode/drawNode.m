@@ -14,7 +14,7 @@ text(zeroPoint(1), zeroPoint(2), sprintf('node %d : %d', obj.ID, size(obj.data, 
 % text(zeroPoint(1), zeroPoint(2), sprintf('%d', size(obj.data, 1)), 'horizontalAlignment', 'center', 'verticalAlignment', 'bottom');
 
 % define extents of horizontal branch line and draw
-x = zeroPoint(1)+[-1;1]/2^obj.depth;
+x = zeroPoint(1)+[-1;1]/2^double(obj.depth);
 y = zeroPoint(2)*[1;1];
 line(x, y)
 % draw horizontal lines to next leaf / node
