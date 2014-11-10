@@ -10,7 +10,7 @@ while ~flag && counter < length(randLeafInds)
     counter = counter + 1;
     leaf = obj.leaves(randLeafInds(counter));
     % discard leaf if only one datapoint
-    flag = sum(leaf.dataIDs) - 1;
+    flag = numel(leaf.dataIDs) - 1;
 end
 if ~flag, fprintf('\nData already fully split.\n'), return, end
 

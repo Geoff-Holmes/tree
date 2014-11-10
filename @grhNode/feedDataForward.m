@@ -4,14 +4,20 @@ function obj = feedDataForward(obj)
 
 fprintf('\nFeed forward from node %d', obj.ID)
 
+% % split the data
+% leftData  = obj.data(obj.data(:,obj.splitVar) <= obj.splitVal, :);
+% rightData = obj.data(obj.data(:,obj.splitVar) >  obj.splitVal, :);
+
+% get this nodes data on chosen variable / dimension
+data = obj.data.getInputs(obj.dataIDs, obj.splitVar);
 % split the data
-leftData  = obj.data(obj.data(:,obj.splitVar) <= obj.splitVal, :);
-rightData = obj.data(obj.data(:,obj.splitVar) >  obj.splitVal, :);
+leftDataIDs  = obj.dataIDs(data <= obj.splitVal);
+rightDataIDs = obj.dataIDs(data >  obj.splitVal);
 
 % where one child becomes empty need to turn parent into leaf absorbing
 % other child
 
-if isempty(leftData)
+if isempty(leftDataIDs)
    fprintf('\nLeft data empty at node %d\n', obj.ID)
    % remove empty descendents
    obj.Lchild.removeNode;
@@ -19,12 +25,12 @@ if isempty(leftData)
 else
     flagLeft = 0;
     % update child data
-    obj.Lchild.data = leftData;
+    obj.Lchild.dataIDs = leftDataIDs;
     if ~isempty(obj.Lchild.splitVal)
         obj.Lchild.feedDataForward;
     end
 end
-if isempty(rightData)
+if isempty(rightDataIDs)
     fprintf('\nRight data empty at node %d\n', obj.ID)
     % remove empty descendants
     obj.Rchild.removeNode;
@@ -32,7 +38,7 @@ if isempty(rightData)
 else
     flagRight = 0;
     % update child data
-    obj.Rchild.data = rightData;
+    obj.Rchild.dataIDs = rightDataIDs;
     if ~isempty(obj.Rchild.splitVal)
         obj.Rchild.feedDataForward;
     end

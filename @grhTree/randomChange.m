@@ -16,7 +16,7 @@ parent = parents(randi(length(parents)));
 fprintf('\nChanging split at node %d\n', parent.ID)
 
 % choose randomly from all dimensions
-dim = randi(obj.input_dim);
+dim = randi(obj.data.input_dim);
 % choose randomly from all possible split point on this leaf / dim
 % and grow by splitting at that point
 [~, midpoints] = parent.dataSortByDim(dim);

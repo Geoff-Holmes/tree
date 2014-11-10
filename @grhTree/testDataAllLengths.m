@@ -2,7 +2,7 @@ function obj = testDataAllLengths(obj)
 
 for node = obj.nodes(~ismember(obj.nodes, obj.leaves)) 
     try
-        assert(sum(node.dataIDs, 1) == sum(node.Lchild.dataIDs, 1) + sum(node.Rchild.dataIDs, 1));
+        assert(numel(node.dataIDs) == numel(node.Lchild.dataIDs) + numel(node.Rchild.dataIDs));
     catch
         obj.health.allDataLengths = 1;
         fprintf('\nMismatched data between parent %d - children %d, %d\n', node.ID, node.Lchild.ID, node.Rchild.ID);

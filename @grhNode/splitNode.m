@@ -8,12 +8,12 @@ if isempty(obj.splitVar)
     obj.splitVar = splitVar;
     obj.splitVal = splitVal;
 
-    if numel(obj.data)
+    if numel(obj.dataIDs)
         % get this nodes data on chosen variable / dimension
         data = obj.data.getInputs(obj.dataIDs, splitVar);
         % split the data
-        leftDataIDs  = (data <= splitVal);
-        rightDataIDs = (data >  splitVal);
+        leftDataIDs  = obj.dataIDs(data <= splitVal);
+        rightDataIDs = obj.dataIDs(data >  splitVal);
     else
         leftDataIDs  = [];
         rightDataIDs = [];

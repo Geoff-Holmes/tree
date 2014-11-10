@@ -2,7 +2,7 @@ function obj = testAllDataAtLeaves(obj)
 
 % test for data all present at leaves
 
-NleafData = sum(vertcat(obj.leaves.dataIDs), 1);
+NleafData = numel([obj.leaves.dataIDs]);
 
 try
     assert(NleafData == obj.data.Ndata)
