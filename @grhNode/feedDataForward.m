@@ -1,4 +1,4 @@
-function obj = feedDataForward(obj)
+function obj = feedDataForward(obj, dataIDs)
 
 % after change of node splitting rule update data to leaves
 
@@ -9,7 +9,6 @@ fprintf('\nFeed forward from node %d', obj.ID)
 % rightData = obj.data(obj.data(:,obj.splitVar) >  obj.splitVal, :);
 
 % get this nodes data on chosen variable / dimension
-dataIDs = obj.pullDataDown;
 data = obj.data.getInputs(dataIDs, obj.splitVar);
 % split the data
 leftDataIDs  = dataIDs(data <= obj.splitVal);
@@ -25,10 +24,12 @@ if isempty(leftDataIDs)
    flagLeft = 1;
 else
     flagLeft = 0;
-    % update child data
-    obj.Lchild.dataIDs = leftDataIDs;
     if ~isempty(obj.Lchild.splitVal)
-        obj.Lchild.feedDataForward;
+        % not yet at leaf
+        obj.Lchild.feedDataForward(leftDataIDs);
+    else
+        % update child data onleaf
+        obj.Lchild.dataIDs = leftDataIDs;
     end
 end
 if isempty(rightDataIDs)
@@ -39,9 +40,13 @@ if isempty(rightDataIDs)
 else
     flagRight = 0;
     % update child data
-    obj.Rchild.dataIDs = rightDataIDs;
+%     obj.Rchild.dataIDs = rightDataIDs;
     if ~isempty(obj.Rchild.splitVal)
-        obj.Rchild.feedDataForward;
+        % not yet at leaf
+        obj.Rchild.feedDataForward(rightDataIDs);
+    else
+        % update child data onleaf
+        obj.Rchild.dataIDs = rightDataIDs;
     end
 end
 

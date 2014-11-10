@@ -73,7 +73,7 @@ else
    temp = child.splitVal;
    child.splitVal = child.parent.splitVal;
    child.parent.splitVal = temp;
-   child.parent.feedDataForward;
+   child.parent.feedDataForward(child.parent.pullDataDown);
    
 end
 
