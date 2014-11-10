@@ -24,8 +24,8 @@ end
 
 fprintf('\nRemoving split at node %d : leaves %d - %d\n', compLeaf.ID, compLeaf.Lchild.ID, compLeaf.Rchild.ID)
 
-% % reassemble data from children onto this node
-% compLeaf.dataIDs = vertcat(compLeaf.Rchild.dataIDs, compLeaf.Lchild.dataIDs);
+% reassemble data from children onto this node
+compLeaf.dataIDs = [compLeaf.Rchild.dataIDs, compLeaf.Lchild.dataIDs];
 
 % add newly combined leaf to leaf list and removed pruned leaves
 obj.leaves = [obj.leaves compLeaf];

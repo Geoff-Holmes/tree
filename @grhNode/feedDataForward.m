@@ -9,10 +9,11 @@ fprintf('\nFeed forward from node %d', obj.ID)
 % rightData = obj.data(obj.data(:,obj.splitVar) >  obj.splitVal, :);
 
 % get this nodes data on chosen variable / dimension
-data = obj.data.getInputs(obj.dataIDs, obj.splitVar);
+dataIDs = obj.pullDataDown;
+data = obj.data.getInputs(dataIDs, obj.splitVar);
 % split the data
-leftDataIDs  = obj.dataIDs(data <= obj.splitVal);
-rightDataIDs = obj.dataIDs(data >  obj.splitVal);
+leftDataIDs  = dataIDs(data <= obj.splitVal);
+rightDataIDs = dataIDs(data >  obj.splitVal);
 
 % where one child becomes empty need to turn parent into leaf absorbing
 % other child

@@ -23,8 +23,8 @@ if isempty(obj.splitVar)
     obj.Lchild = grhNode(obj, leftDataIDs,  logical(0));
     obj.Rchild = grhNode(obj, rightDataIDs, logical(1));
     
-%     % purge data from new parent to save memory
-%     obj.data = [];
+    % purge data from new parent to save memory
+    obj.dataIDs = uint16([]);
     
 else
     fprintf('\nNode is already split\n')
