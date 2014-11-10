@@ -53,10 +53,10 @@ if flagLeft
     obj.Rchild.adjustDepth;
     if obj.leftRight
         obj.parent.Rchild = obj.Rchild;
-        obj.Rchild.leftRight = 1;
+        obj.Rchild.leftRight = logical(1);
     else
         obj.parent.Lchild = obj.Rchild;
-        obj.Rchild.leftRight = 0;
+        obj.Rchild.leftRight = logical(0);
     end
 else
     if flagRight
@@ -64,10 +64,10 @@ else
         obj.Lchild.adjustDepth;
         if obj.leftRight
             obj.parent.Rchild = obj.Lchild;
-            obj.Lchild.leftRight = 1;
+            obj.Lchild.leftRight = logical(1);
         else
             obj.parent.Lchild = obj.Lchild;
-            obj.Lchild.leftRight = 0;
+            obj.Lchild.leftRight = logical(0);
         end
     end
 end

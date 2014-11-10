@@ -43,7 +43,7 @@ delete(compLeaf.Lchild);
 % empty the child links etc
 compLeaf.Rchild   = [];
 compLeaf.Lchild   = [];
-compLeaf.splitVar = [];
+compLeaf.splitVar = uint8([]);
 compLeaf.splitVal = [];
 
 % update tree depth

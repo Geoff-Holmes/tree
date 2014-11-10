@@ -2,20 +2,20 @@ classdef grhNode < matlab.mixin.Copyable
     
     properties
         
-        ID;             % node id
-        tree;           % pointer to tree the node is part of
-        parent;         % parent node
-        leftRight;      % relative to parent node 0 leftChild, 1 rightChild
-        depth;          % at which this node lies
-        data;           % handle to main data object
-        dataIDs;        % data elements on this leaf / node
-        model;          % handle to model applying if leaf
-        splitVar;
+        ID@uint16;          % node id
+        tree;               % pointer to tree the node is part of
+        parent;             % parent node
+        leftRight@logical;  % relative to parent node 0 leftChild, 1 rightChild
+        depth@uint8;        % at which this node lies
+        data;               % handle to main data object
+        dataIDs@uint16;     % data elements on this leaf / node
+        model;              % handle to model applying if leaf
+        splitVar@uint8;
         splitVal;
-        Lchild = [];    % pointers to children
-        Rchild = [];    %
+        Lchild = [];        % children
+        Rchild = [];        %
        
-        plotHandle;     % to store graphics handle
+        plotHandle@uint8;     % to store graphics handle
         
     end
     
@@ -31,9 +31,9 @@ classdef grhNode < matlab.mixin.Copyable
                 if isa(parent, 'grhTree')
                     % node is trunk of tree
                     obj.tree = parent;
-                    obj.ID = 1;
-                    obj.depth = 1;
-                    obj.dataIDs = 1:parent.data.Ndata;
+                    obj.ID = uint16(1);
+                    obj.depth = uint8(1);
+                    obj.dataIDs = uint16(1:parent.data.Ndata);
                 else
                     % node is a sub-node
                     obj.dataIDs = dataIDs;
