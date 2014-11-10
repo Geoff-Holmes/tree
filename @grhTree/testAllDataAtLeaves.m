@@ -2,13 +2,13 @@ function obj = testAllDataAtLeaves(obj)
 
 % test for data all present at leaves
 
-NleafData = size(vertcat(obj.leaves.data), 1);
+NleafData = sum(vertcat(obj.leaves.dataIDs), 1);
 
 try
-    assert(NleafData == obj.Ndata)
+    assert(NleafData == obj.data.Ndata)
 catch
     obj.health.lostData = 1;
-    if NleafData < obj.Ndata
+    if NleafData < obj.data.Ndata
         fprintf('\nData missing from leaves\n')
     else
         fprintf('\nExtra data at leaves\n')

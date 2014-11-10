@@ -33,7 +33,7 @@ classdef grhNode < matlab.mixin.Copyable
                     obj.tree = parent;
                     obj.ID = 1;
                     obj.depth = 1;
-                    obj.dataIDs = 1:parent.data.Ndata;
+                    obj.dataIDs = logical(ones(parent.data.Ndata, 1));
                 else
                     % node is a sub-node
                     obj.dataIDs = dataIDs;
