@@ -18,7 +18,8 @@ if ~flag, fprintf('\nData already fully split.\n'), return, end
 dim = randi(obj.data.input_dim);
 % choose randomly from all possible split point on this leaf / dim
 % and grow by splitting at that point
-midpoints  = leaf.data.getSplitPoints(dim, leaf.dataIDs);
+% midpoints  = leaf.data.getSplitPoints(dim, leaf.dataIDs); % data method
+midpoints  = leaf.getSplitPoints(dim);                      % node method
 splitPoint = midpoints(randi(length(midpoints)));
 leaf.splitNode(dim, splitPoint);
 

@@ -19,8 +19,9 @@ fprintf('\nChanging split at node %d\n', parent.ID)
 dim = randi(obj.data.input_dim);
 % choose randomly from all possible split point on this leaf / dim
 % and grow by splitting at that point
-[~, midpoints] = parent.dataSortByDim(dim);
-splitPoint     = midpoints(randi(length(midpoints)));
+% midpoints  = parent.data.getSplitPoints(dim, parent.dataIDs); % data method
+midpoints  = parent.getSplitPoints(dim); % node method
+splitPoint = midpoints(randi(length(midpoints)));
 
 % update fields
 parent.splitVar = dim;
