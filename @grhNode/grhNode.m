@@ -7,7 +7,8 @@ classdef grhNode < matlab.mixin.Copyable
         parent;         % parent node
         leftRight;      % relative to parent node 0 leftChild, 1 rightChild
         depth;          % at which this node lies
-        data;           % data elements on this leaf / node
+        data;           % handle to main data object
+        dataIDs;        % data elements on this leaf / node
         model;          % handle to model applying if leaf
         splitVar;
         splitVal;
@@ -20,21 +21,22 @@ classdef grhNode < matlab.mixin.Copyable
     
     methods
         
-        function obj = grhNode(parent, data, leftRight)
+        function obj = grhNode(parent, dataIDs, leftRight)
             
             % node constructor function
             
             if nargin
                 obj.parent = parent;
+                obj.data = parent.data;
                 if isa(parent, 'grhTree')
                     % node is trunk of tree
                     obj.tree = parent;
                     obj.ID = 1;
                     obj.depth = 1;
-                    obj.data = parent.data;
+                    obj.dataIDs = 1:parent.data.Ndata;
                 else
                     % node is a sub-node
-                    obj.data = data;
+                    obj.dataIDs = dataIDs;
                     obj.tree = parent.tree;
                     obj.depth = parent.depth + 1;
                     % relation to parent binary split

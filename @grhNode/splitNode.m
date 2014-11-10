@@ -9,17 +9,19 @@ if isempty(obj.splitVar)
     obj.splitVal = splitVal;
 
     if numel(obj.data)
+        % get this nodes data on chosen variable / dimension
+        data = obj.data.getInputs(obj.dataIDs, splitVar);
         % split the data
-        leftData  = obj.data(obj.data(:,splitVar) <= splitVal, :);
-        rightData = obj.data(obj.data(:,splitVar) >  splitVal, :);
+        leftDataIDs  = (data <= splitVal);
+        rightDataIDs = (data >  splitVal);
     else
-        leftData  = [];
-        rightData = [];
+        leftDataIDs  = [];
+        rightDataIDs = [];
     end
 
     % create the new nodes
-    obj.Lchild = grhNode(obj, leftData,  0);
-    obj.Rchild = grhNode(obj, rightData, 1);
+    obj.Lchild = grhNode(obj, leftDataIDs,  0);
+    obj.Rchild = grhNode(obj, rightDataIDs, 1);
     
 %     % purge data from new parent to save memory
 %     obj.data = [];
