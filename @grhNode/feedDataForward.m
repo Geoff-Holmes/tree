@@ -2,7 +2,7 @@ function obj = feedDataForward(obj, dataIDs)
 
 % after change of node splitting rule update data to leaves
 
-fprintf('\nFeed forward from node %d', obj.ID)
+% fprintf('\nFeed forward from node %d', obj.ID)
 
 % % split the data
 % leftData  = obj.data(obj.data(:,obj.splitVar) <= obj.splitVal, :);
@@ -18,7 +18,7 @@ rightDataIDs = dataIDs(data >  obj.splitVal);
 % other child
 
 if isempty(leftDataIDs)
-   fprintf('\nLeft data empty at node %d\n', obj.ID)
+   % fprintf('\nLeft data empty at node %d\n', obj.ID)
    % remove empty descendents
    obj.Lchild.removeNode;
    flagLeft = 1;
@@ -33,7 +33,7 @@ else
     end
 end
 if isempty(rightDataIDs)
-    fprintf('\nRight data empty at node %d\n', obj.ID)
+    % fprintf('\nRight data empty at node %d\n', obj.ID)
     % remove empty descendants
     obj.Rchild.removeNode;
     flagRight = 1;
@@ -81,7 +81,7 @@ end
 % in either case remove this node from node list and delete
 if flagRight || flagLeft
     obj.tree.nodes = obj.tree.nodes([obj.tree.nodes.ID] ~= obj.ID);
-    fprintf('\nDeleting node %d', obj.ID)
+    % fprintf('\nDeleting node %d', obj.ID)
     delete(obj)
 end
     

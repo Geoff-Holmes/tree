@@ -27,5 +27,5 @@ if isempty(obj.splitVar)
     obj.dataIDs = uint16([]);
     
 else
-    fprintf('\nNode is already split\n')
+    % fprintf('\nNode is already split\n')
 end
