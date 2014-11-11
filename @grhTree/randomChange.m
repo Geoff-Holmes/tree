@@ -30,4 +30,4 @@ parent.splitVal = splitPoint;
 parent.feedDataForward(dataIDs);
 
 % update total depth in case change has occurred
-obj.total_depth = max([obj.nodes.depth]);
+obj.total_depth = max([obj.leaves.depth]);

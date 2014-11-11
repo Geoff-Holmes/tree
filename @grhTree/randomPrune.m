@@ -47,6 +47,6 @@ compLeaf.splitVar = uint8([]);
 compLeaf.splitVal = [];
 
 % update tree depth
-obj.total_depth = max([obj.nodes.depth]);
+obj.total_depth = max([obj.leaves.depth]);
 
 % model management to be added
