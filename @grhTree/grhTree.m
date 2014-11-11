@@ -4,10 +4,11 @@ classdef grhTree < matlab.mixin.Copyable
         
         data;               % data
         total_depth = 1;    % depth of tree
-        nodes;              % list of pointers to all nodes incl leaves
-        leaves;             % list of IDs of all leaves
+        nodes;              % list of handles of all nodes incl leaves
+        leaves;             % list of handles of all leaves
         plotHandle;         % figure handle for plot
         health = struct();  % consistency check storage
+        nextNodeID@uint16 = uint16(2);  % reference for node labelling            
         
     end
     

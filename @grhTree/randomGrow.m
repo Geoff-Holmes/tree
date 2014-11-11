@@ -12,7 +12,10 @@ while ~flag && counter < length(randLeafInds)
     % discard leaf if only one datapoint
     flag = numel(leaf.dataIDs) - 1;
 end
-if ~flag, % fprintf('\nData already fully split.\n'), return, end
+if ~flag
+    % fprintf('\nData already fully split.\n')
+    return
+end
 
 % choose randomly from all dimensions
 dim = randi(obj.data.input_dim);
