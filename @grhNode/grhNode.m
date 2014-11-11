@@ -44,11 +44,10 @@ classdef grhNode < matlab.mixin.Copyable
                     % get an unused ID from parent tree
                     obj.ID = obj.tree.nextNodeID;
                     while sum(obj.ID == [obj.tree.nodes.ID])
-                        obj.ID = obj.ID + uint16(1)
+                        obj.ID = obj.ID + uint16(1);
                     end
                     % and update provisional reference for next one
-                    obj.tree.nextNodeID = obj.ID + uint16(1);
-                    obj.ID = max([obj.tree.nodes.ID]) + 1;
+                    obj.tree.nextNodeID = mod(obj.ID + uint16(1), 65000) + 1;
                     % add self to tree node list
                     obj.tree.nodes(end+1) = obj;                    
                     % remove parent from tree leaves list
