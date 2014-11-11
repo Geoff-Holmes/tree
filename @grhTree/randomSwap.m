@@ -69,10 +69,16 @@ if child.splitVar == child.parent.splitVar
 else
     
     % SWAP
-   % fprintf('\nSwapping nodes %d - %d\n', child.parent.ID, child.ID)
+   fprintf('\nSwapping nodes %d - %d\n', child.parent.ID, child.ID)
+   % swap splitting value
    temp = child.splitVal;
    child.splitVal = child.parent.splitVal;
    child.parent.splitVal = temp;
+   % swap splitting variable
+   temp = child.splitVar;
+   child.splitVar = child.parent.splitVar;
+   child.parent.splitVar = temp;
+   % updata data
    child.parent.feedDataForward(child.parent.pullDataDown);
    
 end
