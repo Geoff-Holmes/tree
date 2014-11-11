@@ -31,7 +31,7 @@ else
     % write number of data elements at leaf
     leftLim = x(1);
     bottomLimL = y(1)-opts.d2;
-    text(leftLim, y(1)-opts.d2, sprintf('%d', size(obj.Lchild.data, 1)), 'horizontalAlignment', 'center', 'verticalAlignment', 'bottom');
+    text(leftLim, y(1)-opts.d2, sprintf('%d', numel(obj.Lchild.dataIDs)), 'horizontalAlignment', 'center', 'verticalAlignment', 'bottom');
 %     text(leftLim, y(1)-opts.d2, sprintf('node %d : %d', obj.Lchild.ID, size(obj.Lchild.data, 1)), 'horizontalAlignment', 'center', 'verticalAlignment', 'bottom');
 end
 
@@ -45,7 +45,7 @@ else
     % write number of data elements at leaf
     rightLim = x(2);
     bottomLimR = y(1)-opts.d2;
-    text(rightLim, y(1)-opts.d2, sprintf('%d', size(obj.Rchild.data, 1)), 'horizontalAlignment', 'center', 'verticalAlignment', 'bottom');
+    text(rightLim, y(1)-opts.d2, sprintf('%d', numel(obj.Rchild.dataIDs)), 'horizontalAlignment', 'center', 'verticalAlignment', 'bottom');
 %     text(rightLim, y(1)-opts.d2, sprintf('node %d : %d', obj.Rchild.ID, size(obj.Rchild.data, 1)), 'horizontalAlignment', 'center', 'verticalAlignment', 'bottom');
 end
 

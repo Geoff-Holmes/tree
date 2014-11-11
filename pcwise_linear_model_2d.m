@@ -7,7 +7,7 @@ N = 100;
 x = 1:N;
 y = 1:N;
 [x,y] = meshgrid(x,y);
-data = [x(:) y(:) zeros(N^2,1)];
+data = grhData([x(:) y(:) zeros(N^2,1)]);
 z = zeros(N);   
 
 t = grhTree(data)
