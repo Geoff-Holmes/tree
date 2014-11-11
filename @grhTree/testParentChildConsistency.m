@@ -6,9 +6,9 @@ for node = obj.nodes(2:end)
 %     fprintf('\nChecking child-parent-child from nodes %d\n', node.ID)
     try
         if node.leftRight
-            assert(node.ID == node.parent.Rchild.ID)
+            assert(node == node.parent.Rchild)
         else
-            assert(node.ID == node.parent.Lchild.ID)
+            assert(node == node.parent.Lchild)
         end
     catch
         if node.leftRight == 1, str='right'; else str='left'; end
