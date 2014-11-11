@@ -12,7 +12,7 @@ end
 parents = setdiff(obj.nodes, obj.leaves);
 parent = parents(randi(length(parents)));
 
-fprintf('\nChanging split at node %d\n', parent.ID)
+% fprintf('\nChanging split at node %d\n', parent.ID)
 
 % choose randomly from all dimensions
 dim = randi(obj.data.input_dim, 'uint8');

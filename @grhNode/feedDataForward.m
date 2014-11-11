@@ -80,7 +80,7 @@ end
 
 % in either case remove this node from node list and delete
 if flagRight || flagLeft
-    obj.tree.nodes = obj.tree.nodes([obj.tree.nodes.ID] ~= obj.ID);
+    obj.tree.nodes = obj.tree.nodes(obj.tree.nodes ~= obj);
 %     fprintf('\nDeleting node %d', obj.ID)
     delete(obj)
 end
