@@ -16,7 +16,7 @@ for leaf = leaves
     if strcmp(mode, 'all')
         for j = leaf.dataIDs
             try
-                assert(obj.getNode(leaf.data.getInputs(j)).ID==leaf.ID);
+                assert(obj.getNode(leaf.data.getInputs(j))==leaf);
             catch
                 obj.health.misplacedData = 1;
 %                 fprintf('\nData misplaced on leaf %d', leaf.ID)
@@ -25,7 +25,7 @@ for leaf = leaves
     else
         dataID = obj.dataIDs(randi(length(obj.dataIDs)));
         try
-            assert(obj.getNode(leaf.data.getInputs(dataID)).ID==leaf.ID);
+            assert(obj.getNode(leaf.data.getInputs(dataID))==leaf);
         catch
             obj.health.misplacedData = 1;
 %             fprintf('\nData misplaced on leaf %d', leaf.ID)
