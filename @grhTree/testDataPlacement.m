@@ -19,7 +19,7 @@ for leaf = leaves
                 assert(obj.getNode(leaf.data.getInputs(j)).ID==leaf.ID);
             catch
                 obj.health.misplacedData = 1;
-                fprintf('\nData misplaced on leaf %d', leaf.ID)
+                % fprintf('\nData misplaced on leaf %d', leaf.ID)
             end
         end
     else
@@ -28,7 +28,7 @@ for leaf = leaves
             assert(obj.getNode(leaf.data.getInputs(dataID)).ID==leaf.ID);
         catch
             obj.health.misplacedData = 1;
-            fprintf('\nData misplaced on leaf %d', leaf.ID)
+            % fprintf('\nData misplaced on leaf %d', leaf.ID)
         end
     end
 end

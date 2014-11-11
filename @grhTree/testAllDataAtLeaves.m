@@ -9,9 +9,9 @@ try
 catch
     obj.health.lostData = 1;
     if NleafData < obj.data.Ndata
-        fprintf('\nData missing from leaves\n')
+        % fprintf('\nData missing from leaves\n')
     else
-        fprintf('\nExtra data at leaves\n')
+        % fprintf('\nExtra data at leaves\n')
     end
     
 end
