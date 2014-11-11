@@ -22,7 +22,7 @@ while flag && counter < length(randLeafInds)
     flag = numel(compLeaf.Lchild.splitVar) + numel(compLeaf.Rchild.splitVar);
 end
 
-fprintf('\nRemoving split at node %d : leaves %d - %d\n', compLeaf.ID, compLeaf.Lchild.ID, compLeaf.Rchild.ID)
+% fprintf('\nRemoving split at node %d : leaves %d - %d\n', compLeaf.ID, compLeaf.Lchild.ID, compLeaf.Rchild.ID)
 
 % reassemble data from children onto this node
 compLeaf.dataIDs = [compLeaf.Rchild.dataIDs, compLeaf.Lchild.dataIDs];

@@ -2,7 +2,7 @@ classdef grhNode < matlab.mixin.Copyable
     
     properties
         
-        ID@uint16;          % node id
+%         ID@uint16;          % node id
         tree;               % pointer to tree the node is part of
         parent;             % parent node
         leftRight@logical;  % relative to parent node 0 leftChild, 1 rightChild
@@ -31,7 +31,7 @@ classdef grhNode < matlab.mixin.Copyable
                 if isa(parent, 'grhTree')
                     % node is trunk of tree
                     obj.tree = parent;
-                    obj.ID = uint16(1);
+%                     obj.ID = uint16(1);
                     obj.depth = uint8(1);
                     obj.dataIDs = uint16(1:parent.data.Ndata);
                 else
@@ -42,7 +42,7 @@ classdef grhNode < matlab.mixin.Copyable
                     % relation to parent binary split
                     obj.leftRight = leftRight;
                     % get an unused ID from parent tree
-                    obj.ID = max([obj.tree.nodes.ID]) + 1;
+%                     obj.ID = max([obj.tree.nodes.ID]) + 1;
                     % add self to tree node list
                     obj.tree.nodes(end+1) = obj;                    
                     % remove parent from tree leaves list

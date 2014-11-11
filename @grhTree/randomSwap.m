@@ -35,7 +35,7 @@ if child.splitVar == child.parent.splitVar
 
     % if right child
     if child.leftRight == 0
-        fprintf('\nRotating left nodes %d - %d\n', child.ID, child.parent.ID)
+%         fprintf('\nRotating left nodes %d - %d\n', child.ID, child.parent.ID)
         tempChild = child.Rchild;,
         child.Rchild = child.Lchild;
         child.Rchild.leftRight = ~child.Lchild.leftRight;
@@ -49,7 +49,7 @@ if child.splitVar == child.parent.splitVar
         child.Lchild.adjustDepth(1);
         % otherwise left child    
     else % child.leftRight = 0
-        fprintf('\nRotating right nodes %d - %d\n', child.ID, child.parent.ID)
+%         fprintf('\nRotating right nodes %d - %d\n', child.ID, child.parent.ID)
         tempChild = child.Lchild;
         child.Lchild = child.Rchild;
         child.Lchild.leftRight = ~child.Lchild.leftRight;
@@ -69,7 +69,7 @@ if child.splitVar == child.parent.splitVar
 else
     
     % SWAP
-   fprintf('\nSwapping nodes %d - %d\n', child.parent.ID, child.ID)
+%    fprintf('\nSwapping nodes %d - %d\n', child.parent.ID, child.ID)
    temp = child.splitVal;
    child.splitVal = child.parent.splitVal;
    child.parent.splitVal = temp;
