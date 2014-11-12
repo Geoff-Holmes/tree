@@ -79,7 +79,7 @@ classdef grhNode < matlab.mixin.Copyable
             else
                 cpObj.parent = cpObj.parent.ID;
             end
-            if numel (cpObj.Lchild)
+            if ~isempty(cpObj.Lchild)
                 cpObj.Lchild = cpObj.Lchild.ID;
                 cpObj.Rchild = cpObj.Rchild.ID;
             end

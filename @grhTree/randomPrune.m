@@ -3,7 +3,7 @@ function obj = randomPrune(obj)
 % random prune operation see gramacy_bayesian_2008 p1124
 
 % check for no branches
-if numel(obj.nodes) == 1
+if obj.total_depth == 1
     % fprintf('\nNo branches to prune.')
     return
 end    
@@ -19,7 +19,8 @@ while flag && counter < length(randLeafInds)
     compLeaf = obj.leaves(randLeafInds(counter)).parent;
 %     % fprintf('\nCandidate for pruning : parent of node %d', obj.leaves(randLeafInds(counter)))
     % discard if both children are not leaves
-    flag = numel(compLeaf.Lchild.splitVar) + numel(compLeaf.Rchild.splitVar);
+%     flag = numel(compLeaf.Lchild.splitVar) + numel(compLeaf.Rchild.splitVar);
+    flag = ~(isempty(compLeaf.Lchild.splitVar) && isempty(compLeaf.Rchild.splitVar));
 end
 
 % fprintf('\nRemoving split at node %d : leaves %d - %d\n', compLeaf.ID, compLeaf.Lchild.ID, compLeaf.Rchild.ID)

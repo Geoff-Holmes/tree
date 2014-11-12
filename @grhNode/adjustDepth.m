@@ -10,7 +10,7 @@ end
 obj.depth = obj.depth + diff;
 
 % set new depth for any children
-if numel(obj.splitVar)
+if ~isempty(obj.splitVar)
     obj.Lchild.adjustDepth(diff);
     obj.Rchild.adjustDepth(diff);
 end

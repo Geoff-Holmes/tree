@@ -8,7 +8,7 @@ if isempty(obj.splitVar)
     obj.splitVar = uint8(splitVar);
     obj.splitVal = splitVal;
 
-    if numel(obj.dataIDs)
+    if ~isempty(obj.dataIDs)
         % get this nodes data on chosen variable / dimension
         data = obj.data.getInputs(obj.dataIDs, splitVar);
         % split the data

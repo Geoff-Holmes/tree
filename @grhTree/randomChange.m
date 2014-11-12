@@ -3,7 +3,7 @@ function obj = randomChange(obj)
 % random change operation see gramacy_bayesian_2008 p1125
 
 % check for no branches
-if numel(obj.nodes) == 1
+if obj.total_depth == 1
     % fprintf('\nNo branches to change.')
     return
 end    
