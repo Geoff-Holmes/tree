@@ -17,13 +17,19 @@ if ~flag
     return
 end
 
-% choose randomly from all dimensions
-dim = randi(obj.data.input_dim);
+midpoints = [];
+% choose randomly from all dimensions with at least one midpoint
+inds = randperm(obj.data.input_dim);
+counter = 0;
+while isempty(midpoints)
+    counter = counter + 1;
+    dim = inds(counter);
+    % midpoints  = leaf.data.getSplitPoints(dim, leaf.dataIDs); % data method
+    midpoints  = leaf.getSplitPoints(dim)                      % node method
+end
 % choose randomly from all possible split point on this leaf / dim
-% and grow by splitting at that point
-% midpoints  = leaf.data.getSplitPoints(dim, leaf.dataIDs); % data method
-midpoints  = leaf.getSplitPoints(dim);                      % node method
 splitPoint = midpoints(randi(length(midpoints)));
+% and grow by splitting at that point
 leaf.splitNode(dim, splitPoint);
 
 % fprintf('\nGrowing from node %d, new leaves %d - %d\n', leaf.ID, leaf.Lchild.ID, leaf.Rchild.ID)
