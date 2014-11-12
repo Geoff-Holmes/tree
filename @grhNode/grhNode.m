@@ -21,7 +21,7 @@ classdef grhNode < matlab.mixin.Copyable
     
     methods
         
-        function obj = grhNode(parent, dataIDs, leftRight)
+        function obj = grhNode(parent, dataIDs, leftRight, model)
             
             % node constructor function
             
@@ -58,6 +58,9 @@ classdef grhNode < matlab.mixin.Copyable
                     if obj.depth > obj.tree.total_depth
                         obj.tree.total_depth = obj.tree.total_depth + 1;
                     end
+                end
+                if nargin == 4
+                    obj.model = model;
                 end
             else
                 assert(1==0); % throw error to test for ending up here
