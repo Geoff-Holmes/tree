@@ -41,7 +41,7 @@ classdef grhTree < matlab.mixin.Copyable
                 else
                     node.parent = obj;
                 end
-                if numel(node.Lchild)
+                if ~isempty(node.Lchild)
                     node.Lchild = cpObj.nodes([cpObj.nodes.ID]==node.Lchild);
                     node.Rchild = cpObj.nodes([cpObj.nodes.ID]==node.Rchild);
                 end
