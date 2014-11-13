@@ -9,7 +9,7 @@ classdef grhTree < matlab.mixin.Copyable
         plotHandle;         % figure handle for plot
         health = struct();  % consistency check storage
         nextNodeID@uint16 = uint16(2);  % reference for node labelling            
-        prior= struct('a', 1, 'b', 3);  % tree growth parameters
+        prior= struct('a', 1, 'b', 0);  % tree growth parameters
         
     end
     
