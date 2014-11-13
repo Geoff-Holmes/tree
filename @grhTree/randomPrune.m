@@ -27,6 +27,8 @@ end
 
 % reassemble data from children onto this node
 compLeaf.dataIDs = [compLeaf.Rchild.dataIDs, compLeaf.Lchild.dataIDs];
+% form composite model from the child models
+compLeaf.model = mean(compLeaf.Rchild.model, compLeaf.Lchild.model);
 
 % add newly combined leaf to leaf list and removed pruned leaves
 obj.leaves = [obj.leaves compLeaf];

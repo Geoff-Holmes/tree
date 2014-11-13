@@ -21,7 +21,7 @@ classdef grhTree < matlab.mixin.Copyable
             obj.data = data;
             % initialise node and lieaf list
             linearModel = randi(12, 1, obj.data.input_dim) - 6;
-            newNode    = grhNode(obj, linearModel);
+            newNode    = grhNode(obj, [], [], linearModel);
             obj.nodes  = newNode;
             obj.leaves = newNode;
         end
