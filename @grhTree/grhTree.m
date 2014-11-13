@@ -1,58 +1,58 @@
-classdef grhTree < handle
+classdef grhTree < matlab.mixin.Copyable
     
     properties
         
         data;               % data
-        input_dim;          % dimension of datapoint inputs
-        Ndata;              % total number of datapoints
-        data_range;         % extent of data space
         total_depth = 1;    % depth of tree
-        nodes;              % list of pointers to all nodes incl leaves
-        leaves;             % list of IDs of all leaves
+        nodes;              % list of handles of all nodes incl leaves
+        leaves;             % list of handles of all leaves
         plotHandle;         % figure handle for plot
         health = struct();  % consistency check storage
+        nextNodeID@uint16 = uint16(2);  % reference for node labelling            
         
     end
     
     methods
         
-        function obj = grhTree(data1, data2)
+        function obj = grhTree(data)
             
             % initial contructor of tree
-            
-            % parse input data
-            if nargin > 0
-                if numel(data1) == 2
-                    assert(size(data2, 2) == sum(data1))
-                    obj.input_dim  = data1(1);
-                    obj.data_range = data2;
-                else
-                    if isstruct(data1)
-                        obj.data = [data1.x data1.y];
-                        obj.input_dim = size(data1.x, 2);
-                    else
-                        if nargin == 2 
-                            obj.data = [data1 data2];
-                            obj.input_dim = size(data1, 2);
-                        else
-                            % assume final colunn is output
-                            obj.data = data1;
-                            obj.input_dim = size(data1, 2) - 1;
-                        end
-                    end
-                    obj.Ndata = size(obj.data, 1);
-                    obj.data_range = [min(obj.data); max(obj.data);];
-                end
-            end
-            
-            % initialise node list
+            % handle to data object
+            obj.data = data;
+            % initialise node and lieaf list
             newNode    = grhNode(obj);
             obj.nodes  = newNode;
-            obj.leaves = newNode.ID;
-            
-
+            obj.leaves = newNode;
         end
-    end 
+    end
+    
+    methods(Access = protected)
+        % Override copyElement method:
+        function cpObj = copyElement(obj)
+            % Make a shallow copy of all properties
+            cpObj = copyElement@matlab.mixin.Copyable(obj);
+            % Make a deep copy of the node handle objects
+            cpObj.nodes = copy(obj.nodes);
+            % make real temporary ID references
+            for node = cpObj.nodes
+                node.tree  = obj;
+                if node.parent
+                    node.parent = cpObj.nodes([cpObj.nodes.ID]==node.parent);
+                else
+                    node.parent = obj;
+                end
+                if ~isempty(node.Lchild)
+                    node.Lchild = cpObj.nodes([cpObj.nodes.ID]==node.Lchild);
+                    node.Rchild = cpObj.nodes([cpObj.nodes.ID]==node.Rchild);
+                end
+            end
+            % link leaf list to copied node list
+            [~,leafIDs] = intersect(obj.nodes, obj.leaves);
+            cpObj.leaves = cpObj.nodes(leafIDs);
+            % remove any plot handles
+            cpObj.plotHandle = [];
+        end
+    end
 end
     
     

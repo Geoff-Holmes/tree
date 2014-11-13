@@ -1,40 +1,52 @@
-function obj = feedDataForward(obj)
+function obj = feedDataForward(obj, dataIDs)
 
 % after change of node splitting rule update data to leaves
 
-fprintf('\nFeed forward from node %d', obj.ID)
+% fprintf('\nFeed forward from node %d', obj.ID)
 
+% % split the data
+% leftData  = obj.data(obj.data(:,obj.splitVar) <= obj.splitVal, :);
+% rightData = obj.data(obj.data(:,obj.splitVar) >  obj.splitVal, :);
+
+% get this nodes data on chosen variable / dimension
+data = obj.data.getInputs(dataIDs, obj.splitVar);
 % split the data
-leftData  = obj.data(obj.data(:,obj.splitVar) <= obj.splitVal, :);
-rightData = obj.data(obj.data(:,obj.splitVar) >  obj.splitVal, :);
+leftDataIDs  = dataIDs(data <= obj.splitVal);
+rightDataIDs = dataIDs(data >  obj.splitVal);
 
 % where one child becomes empty need to turn parent into leaf absorbing
 % other child
 
-if isempty(leftData)
-   fprintf('\nLeft data empty at node %d\n', obj.ID)
+if isempty(leftDataIDs)
+%    fprintf('\nLeft data empty at node %d\n', obj.ID)
    % remove empty descendents
    obj.Lchild.removeNode;
    flagLeft = 1;
 else
     flagLeft = 0;
-    % update child data
-    obj.Lchild.data = leftData;
     if ~isempty(obj.Lchild.splitVal)
-        obj.Lchild.feedDataForward;
+        % not yet at leaf
+        obj.Lchild.feedDataForward(leftDataIDs);
+    else
+        % update child data onleaf
+        obj.Lchild.dataIDs = leftDataIDs;
     end
 end
-if isempty(rightData)
-    fprintf('\nRight data empty at node %d\n', obj.ID)
+if isempty(rightDataIDs)
+%     fprintf('\nRight data empty at node %d\n', obj.ID)
     % remove empty descendants
     obj.Rchild.removeNode;
     flagRight = 1;
 else
     flagRight = 0;
     % update child data
-    obj.Rchild.data = rightData;
+%     obj.Rchild.dataIDs = rightDataIDs;
     if ~isempty(obj.Rchild.splitVal)
-        obj.Rchild.feedDataForward;
+        % not yet at leaf
+        obj.Rchild.feedDataForward(rightDataIDs);
+    else
+        % update child data onleaf
+        obj.Rchild.dataIDs = rightDataIDs;
     end
 end
 
@@ -47,10 +59,10 @@ if flagLeft
     obj.Rchild.adjustDepth;
     if obj.leftRight
         obj.parent.Rchild = obj.Rchild;
-        obj.Rchild.leftRight = 1;
+        obj.Rchild.leftRight = logical(1);
     else
         obj.parent.Lchild = obj.Rchild;
-        obj.Rchild.leftRight = 0;
+        obj.Rchild.leftRight = logical(0);
     end
 else
     if flagRight
@@ -58,10 +70,10 @@ else
         obj.Lchild.adjustDepth;
         if obj.leftRight
             obj.parent.Rchild = obj.Lchild;
-            obj.Lchild.leftRight = 1;
+            obj.Lchild.leftRight = logical(1);
         else
             obj.parent.Lchild = obj.Lchild;
-            obj.Lchild.leftRight = 0;
+            obj.Lchild.leftRight = logical(0);
         end
     end
 end
@@ -69,7 +81,7 @@ end
 % in either case remove this node from node list and delete
 if flagRight || flagLeft
     obj.tree.nodes = obj.tree.nodes([obj.tree.nodes.ID] ~= obj.ID);
-    fprintf('\nDeleting node %d', obj.ID)
+%     fprintf('\nDeleting node %d', obj.ID)
     delete(obj)
 end
     

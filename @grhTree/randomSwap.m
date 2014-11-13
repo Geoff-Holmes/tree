@@ -5,17 +5,17 @@ function obj = randomSwap(obj)
 
 % check for not enough branches
 if obj.total_depth < 3
-    fprintf('\nTree not deep enough to swap nodes.\n')
+    % fprintf('\nTree not deep enough to swap nodes.\n')
     return
 end
 
 % choose an internal parent-child pair
 % choose an internal child node
-childIDs = setdiff([obj.nodes.ID], [1 obj.leaves]);
+children = setdiff(obj.nodes(2:end), obj.leaves);
 try
-child = obj.nodes([obj.nodes.ID] == childIDs(randi(length(childIDs))));
+child = children(randi(length(children)));
 catch ex
-   childIDs
+   children
    obj.total_depth
 end
     
@@ -35,8 +35,8 @@ if child.splitVar == child.parent.splitVar
 
     % if right child
     if child.leftRight == 0
-        fprintf('\nRotating left nodes %d - %d\n', child.ID, child.parent.ID)
-        tempChild = child.Rchild;
+        % fprintf('\nRotating left nodes %d - %d\n', child.ID, child.parent.ID)
+        tempChild = child.Rchild;,
         child.Rchild = child.Lchild;
         child.Rchild.leftRight = ~child.Lchild.leftRight;
         child.Lchild = child.parent.Lchild;
@@ -49,7 +49,7 @@ if child.splitVar == child.parent.splitVar
         child.Lchild.adjustDepth(1);
         % otherwise left child    
     else % child.leftRight = 0
-        fprintf('\nRotating right nodes %d - %d\n', child.ID, child.parent.ID)
+        % fprintf('\nRotating right nodes %d - %d\n', child.ID, child.parent.ID)
         tempChild = child.Lchild;
         child.Lchild = child.Rchild;
         child.Lchild.leftRight = ~child.Lchild.leftRight;
@@ -64,18 +64,24 @@ if child.splitVar == child.parent.splitVar
     end
     
     % update data set at this node
-    child.data = vertcat(child.Lchild.data, child.Rchild.data);
+    child.dataIDs = [child.Lchild.dataIDs, child.Rchild.dataIDs];
 
 else
     
     % SWAP
-   fprintf('\nSwapping nodes %d - %d\n', child.parent.ID, child.ID)
+%    fprintf('\nSwapping nodes %d - %d\n', child.parent.ID, child.ID)
+   % swap splitting value
    temp = child.splitVal;
    child.splitVal = child.parent.splitVal;
    child.parent.splitVal = temp;
-   child.parent.feedDataForward;
+   % swap splitting variable
+   temp = child.splitVar;
+   child.splitVar = child.parent.splitVar;
+   child.parent.splitVar = temp;
+   % updata data
+   child.parent.feedDataForward(child.parent.pullDataDown);
    
 end
 
 % update total depth in case change has occurred
-obj.total_depth = max([obj.nodes.depth]);
+obj.total_depth = max([obj.leaves.depth]);
