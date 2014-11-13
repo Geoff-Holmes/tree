@@ -20,8 +20,8 @@ if isempty(obj.splitVar)
     end
     
     % permute parent model
-    Lmodel = obj.model + randn(1,obj.data.input_dim);
-    Rmodel = obj.model + randn(1,obj.data.input_dim);
+    Lmodel = obj.model + randn(1,obj.data.input_dim+1);
+    Rmodel = obj.model + randn(1,obj.data.input_dim+1);
     % create the new nodes
     obj.Lchild = grhNode(obj, leftDataIDs,  logical(0), Lmodel);
     obj.Rchild = grhNode(obj, rightDataIDs, logical(1), Rmodel);
