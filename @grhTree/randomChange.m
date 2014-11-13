@@ -14,12 +14,15 @@ parent = parents(randi(length(parents)));
 
 % fprintf('\nChanging split at node %d\n', parent.ID)
 
-% choose randomly from all dimensions
-dim = randi(obj.data.input_dim, 'uint8');
-% choose randomly from all possible split point on this leaf / dim
-% and grow by splitting at that point
-% midpoints  = parent.data.getSplitPoints(dim, parent.dataIDs); % data method
-[midpoints, dataIDs]  = parent.getSplitPoints(dim); % node method
+% choose randomly from all dimensions ensuring a splitpoint
+midpoints = [];
+dims = uint8(randperm(obj.data.input_dim));
+cc = 0;
+while isempty(midpoints)
+    cc = cc+1;
+    dim = dims(cc);
+    [midpoints, dataIDs]  = parent.getSplitPoints(dim); % node method
+end
 splitPoint = midpoints(randi(length(midpoints)));
 
 % update fields
