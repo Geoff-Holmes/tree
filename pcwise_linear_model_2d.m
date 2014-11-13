@@ -70,7 +70,7 @@ for thisLeaf = t.leaves
 end
 
 set(s, 'ZData', z);
-v(2) = 30 + 10 * sin(counter/20);
+v(2) = 40 + 20 * sin(counter/40);
 v = v + a;
 % a = a / norm(a);
 view(v)
