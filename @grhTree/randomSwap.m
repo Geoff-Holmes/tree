@@ -64,7 +64,7 @@ if child.splitVar == child.parent.splitVar
     end
     
     % update data set at this node
-    child.dataIDs = [child.Lchild.dataIDs, child.Rchild.dataIDs];
+%     child.dataIDs = [child.Lchild.dataIDs, child.Rchild.dataIDs];
 
 else
     
