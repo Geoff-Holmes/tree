@@ -5,6 +5,7 @@ close all
 
 % transition probabilities
 p = [4 1 1 0];
+pp=p;
 p = cumsum(p);
 p = p/max(p);
 
@@ -24,6 +25,8 @@ data = [x(:) y(:) zeros(N^2,1)];
 z = zeros(N);
 
 % intial graphics
+sp2 = subplot(1,2,2);
+sp1 = subplot(1,2,1);
 s = surf(x,y,z);
 view(v)
 axis([0 100 0 100 -1000 1000])
@@ -38,10 +41,23 @@ counter = 0;
 % animate tree
 while true
     
+    if ~mod(counter, 20)
+        subplot(sp2), cla; t.drawTree('subplot'); axis off;
+        title(sprintf('p = [%.0f %.0f %.0f %.0f] : t.prior.b = %.2f', pp, t.prior.b))
+    end
+    
     counter = counter + 1;
     
-    if (t.prior.b < 0 && rand<.5) || t.prior.b > 0
-    if rand<.1, t.prior.b = 1+randn();end
+    if rand < .05
+        p = randi(5, 1, 4);
+        p(1) = p(1)*2;
+        pp = p;
+        p = cumsum(p);
+        p = p/max(p);
+    end
+    
+    if (t.prior.b < 0 && rand<.1) || t.prior.b > 0
+    if rand<.1, t.prior.b = randn();end
     end
     
 if rand < p(1)
@@ -70,10 +86,10 @@ for thisLeaf = t.leaves
     t.data.setOutputs(thisLeaf.dataIDs, 1, [ones(numel(thisLeaf.dataIDs),1) thisLeaf.data.getInputs(thisLeaf.dataIDs)] * thisLeaf.model'); %+rand*randn(length(thisLeaf.dataIDs),1)*33);
     data = t.data.getData(thisLeaf.dataIDs);
     inds = (data(:,2)-1)*N + data(:,1);
-    z(inds) = data(:,3);
-       
+    z(inds) = data(:,3);   
 end
 
+subplot(sp1)
 set(s, 'ZData', z);
 v(2) = 40 + 20 * sin(counter/40);
 v = v + a;

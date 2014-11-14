@@ -37,6 +37,8 @@ switch lower(mode)
         else
             obj.plotHandle = figure; hold on; axis off;
         end
+    case 'subplot'
+        
 end
 
 % starting point at base of tree
