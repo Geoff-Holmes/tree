@@ -4,7 +4,7 @@ clear all
 close all
 
 % transition probabilities
-p = [4 1 1 1];
+p = [4 1 1 0];
 p = cumsum(p);
 p = p/max(p);
 
@@ -31,6 +31,7 @@ axis off
 
 % initialise tree with this data
 t = grhTree(grhData(data));
+t.prior.b = 4;
 
 counter = 0;
 
@@ -38,6 +39,10 @@ counter = 0;
 while true
     
     counter = counter + 1;
+    
+    if (t.prior.b < 0 && rand<.5) || t.prior.b > 0
+    if rand<.1, t.prior.b = 1+randn();end
+    end
     
 if rand < p(1)
 %     fprintf('\nGrowing:')
