@@ -23,8 +23,8 @@ if isempty(obj.splitVar)
     Lmodel = obj.model + randn(1,obj.data.input_dim+1);
     Rmodel = obj.model + randn(1,obj.data.input_dim+1);
     % create the new nodes
-    obj.Lchild = grhNode(obj, leftDataIDs,  logical(0), Lmodel);
-    obj.Rchild = grhNode(obj, rightDataIDs, logical(1), Rmodel);
+    obj.Lchild = grhNode(obj, leftDataIDs,  false, Lmodel);
+    obj.Rchild = grhNode(obj, rightDataIDs, true, Rmodel);
     
     % purge data from new parent to save memory
     obj.dataIDs = uint16([]);

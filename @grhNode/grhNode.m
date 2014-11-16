@@ -51,7 +51,8 @@ classdef grhNode < matlab.mixin.Copyable
                     % add self to tree node list
                     obj.tree.nodes(end+1) = obj;                    
                     % remove parent from tree leaves list
-                    obj.tree.leaves = obj.tree.leaves(obj.tree.leaves~=obj.parent);
+%                     obj.tree.leaves = obj.tree.leaves(obj.tree.leaves~=obj.parent);
+                    obj.tree.leaves = obj.tree.leaves([obj.tree.leaves.ID]~=obj.parent.ID);
                     % add self ID to tree leaves list
                     obj.tree.leaves(end+1) = obj;
                     % check and update tree overall depth
