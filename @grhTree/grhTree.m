@@ -10,6 +10,7 @@ classdef grhTree < matlab.mixin.Copyable
         health = struct();  % consistency check storage
         nextNodeID@uint16 = uint16(2);  % reference for node labelling            
         prior= struct('a', 1, 'b', 0);  % tree growth parameters
+        const = struct('u16_1', uint16(1));
         
     end
     

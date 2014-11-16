@@ -31,7 +31,7 @@ classdef grhNode < matlab.mixin.Copyable
                 if isa(parent, 'grhTree')
                     % node is trunk of tree
                     obj.tree = parent;
-                    obj.ID = uint16(1);
+                    obj.ID = obj.tree.const.u16_1;
                     obj.depth = uint8(1);
                     obj.dataIDs = uint16(1:parent.data.Ndata);
                 else
@@ -47,7 +47,7 @@ classdef grhNode < matlab.mixin.Copyable
                         obj.ID = obj.ID + uint16(1);
                     end
                     % and update provisional reference for next one
-                    obj.tree.nextNodeID = mod(obj.ID + uint16(1), 65000) + 1;
+                    obj.tree.nextNodeID = mod(obj.ID + obj.tree.const.u16_1, 65000) + 1;
                     % add self to tree node list
                     obj.tree.nodes(end+1) = obj;                    
                     % remove parent from tree leaves list
