@@ -28,7 +28,7 @@ end
 % reassemble data from children onto this node
 compLeaf.dataIDs = [compLeaf.Rchild.dataIDs, compLeaf.Lchild.dataIDs];
 % form composite model from the child models
-compLeaf.model = mean([compLeaf.Rchild.model; compLeaf.Lchild.model]);
+compLeaf.model = (compLeaf.Rchild.model + compLeaf.Lchild.model)/2;
 
 % add newly combined leaf to leaf list
 obj.leaves = [obj.leaves compLeaf];
