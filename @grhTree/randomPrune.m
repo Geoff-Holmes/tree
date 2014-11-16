@@ -30,17 +30,13 @@ compLeaf.dataIDs = [compLeaf.Rchild.dataIDs, compLeaf.Lchild.dataIDs];
 % form composite model from the child models
 compLeaf.model = mean([compLeaf.Rchild.model; compLeaf.Lchild.model]);
 
-% add newly combined leaf to leaf list and removed pruned leaves
+% add newly combined leaf to leaf list
 obj.leaves = [obj.leaves compLeaf];
-% obj.leaves = setdiff(obj.leaves, [compLeaf.Rchild compLeaf.Lchild]);
-obj.leaves = obj.leaves([obj.leaves.ID] ~= compLeaf.Rchild.ID & [obj.leaves.ID] ~= compLeaf.Lchild.ID);
-% obj.leaves = obj.leaves([obj.leaves.ID] ~= compLeaf.Lchild.ID);
 
 % remove pruned leaves from node and leaf lists
-obj.nodes = obj.nodes(obj.nodes ~= compLeaf.Rchild);
-obj.nodes = obj.nodes(obj.nodes ~= compLeaf.Lchild);
-obj.leaves = obj.leaves(obj.leaves ~= compLeaf.Rchild);
-obj.leaves = obj.leaves(obj.leaves ~= compLeaf.Lchild);
+obj.nodes = obj.nodes([obj.nodes.ID] ~= compLeaf.Lchild.ID & [obj.nodes.ID] ~= compLeaf.Rchild.ID);
+obj.leaves = obj.leaves([obj.leaves.ID] ~= compLeaf.Rchild.ID & [obj.leaves.ID] ~= compLeaf.Lchild.ID);
+
 % and delete
 delete(compLeaf.Rchild);
 delete(compLeaf.Lchild);
@@ -53,5 +49,3 @@ compLeaf.splitVal = [];
 
 % update tree depth
 obj.total_depth = max([obj.leaves.depth]);
-
-% model management to be added
