@@ -34,8 +34,8 @@ compLeaf.model = (compLeaf.Rchild.model + compLeaf.Lchild.model)/2;
 obj.leaves = [obj.leaves compLeaf];
 
 % remove pruned leaves from node and leaf lists
-obj.nodes = obj.nodes([obj.nodes.ID] ~= compLeaf.Lchild.ID & [obj.nodes.ID] ~= compLeaf.Rchild.ID);
-obj.leaves = obj.leaves([obj.leaves.ID] ~= compLeaf.Rchild.ID & [obj.leaves.ID] ~= compLeaf.Lchild.ID);
+obj.nodes([obj.nodes.ID] == compLeaf.Lchild.ID | [obj.nodes.ID] == compLeaf.Rchild.ID) = [];
+obj.leaves([obj.leaves.ID] == compLeaf.Rchild.ID | [obj.leaves.ID] == compLeaf.Lchild.ID) = [];
 
 % and delete
 delete(compLeaf.Rchild);
