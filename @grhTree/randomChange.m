@@ -4,7 +4,7 @@ function obj = randomChange(obj)
 
 % check for no branches
 if obj.total_depth == 1
-    fprintf('\nNo branches to change.')
+    % fprintf('\nNo branches to change.')
     return
 end    
 
@@ -13,7 +13,7 @@ end
 parents = obj.nodes(logical([obj.nodes.splitVar]));
 parent = parents(randi(length(parents)));
 
-fprintf('\nChanging split at node %d\n', parent.ID)
+% fprintf('\nChanging split at node %d\n', parent.ID)
 
 % choose randomly from all dimensions ensuring a splitpoint
 midpoints = [];

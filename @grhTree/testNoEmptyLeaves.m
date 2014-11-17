@@ -6,6 +6,6 @@ for leaf = obj.leaves
         assert(~isempty(leaf.dataIDs))
     catch
         obj.health.emptyLeaf = 1;
-        fprintf('\nNo data at leaf %d\n', leaf.ID)
+        % fprintf('\nNo data at leaf %d\n', leaf.ID)
     end
 end

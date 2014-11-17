@@ -20,23 +20,23 @@ counter = 0;
 while counter < 1000
 counter = counter+1;
 if rand < p(1)
-    fprintf('\nGrowing:')
+    % fprintf('\nGrowing:')
     t.randomGrow;
-%     fprintf('\n')    
+%     % fprintf('\n')    
 else
     if rand < p(2)
-        fprintf('\nPruning:')
+        % fprintf('\nPruning:')
         t.randomPrune;
-%         fprintf('\n')  
+%         % fprintf('\n')  
     else
         if rand < p(3)
-            fprintf('\nSwapping:')
+            % fprintf('\nSwapping:')
             t.randomSwap;
-%             fprintf('\n')
+%             % fprintf('\n')
         else
-            fprintf('\nChanging:')
+            % fprintf('\nChanging:')
             t.randomChange;
-%             fprintf('\n')    
+%             % fprintf('\n')    
         end
     end
 end
@@ -46,7 +46,7 @@ end
 
 t.testDepthConsistency;
 if isfield(t.health, 'depthFail'), break;
-% else fprintf('\npassed depth\n')
+% else % fprintf('\npassed depth\n')
 end
 
 t.testAllDataAtLeaves;
