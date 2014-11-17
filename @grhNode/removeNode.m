@@ -3,7 +3,7 @@ function obj = removeNode(obj)
 % where data is empty recursively remove nodes to leaves
 
 % decide if obj is parent or leaf
-if ~isempty(obj.splitVar)
+if obj.splitVar
     % parent so remove children
     obj.Lchild.removeNode;
     obj.Rchild.removeNode;

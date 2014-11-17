@@ -14,10 +14,13 @@ end
 children = obj.nodes(logical([obj.nodes.splitVar]));
 children = children(2:end);
 try
-child = children(randi(length(children)));
+    child = children(randi(length(children)));
+    fprintf('\nSwapping\n')
 catch ex
    children
    obj.total_depth
+   fprintf('\nNo node for swapping\n')
+   return
 end
     
 
