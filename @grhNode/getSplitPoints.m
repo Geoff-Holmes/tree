@@ -5,7 +5,7 @@ function [splitPoints, dataIDs] = getSplitPoints(obj, dim)
 
 % get data
 dataIDs = obj.pullDataDown;
-temp = sort(obj.data.getInputs(dataIDs, dim));
+temp = sort(obj.data.data(dataIDs, dim));
 
 % weed out repeated data
 inds = logical((temp(2:end) - temp(1:end-1)));

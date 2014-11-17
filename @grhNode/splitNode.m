@@ -10,7 +10,7 @@ if isempty(obj.splitVar)
 
     if ~isempty(obj.dataIDs)
         % get this nodes data on chosen variable / dimension
-        data = obj.data.getInputs(obj.dataIDs, splitVar);
+        data = obj.data.data(obj.dataIDs, splitVar);
         % split the data
         leftDataIDs  = obj.dataIDs(data <= splitVal);
         rightDataIDs = obj.dataIDs(data >  splitVal);

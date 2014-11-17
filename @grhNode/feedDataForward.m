@@ -9,7 +9,7 @@ function obj = feedDataForward(obj, dataIDs)
 % rightData = obj.data(obj.data(:,obj.splitVar) >  obj.splitVal, :);
 
 % get this nodes data on chosen variable / dimension
-data = obj.data.getInputs(dataIDs, obj.splitVar);
+data = obj.data.data(dataIDs, obj.splitVar);
 % split the data
 leftDataIDs  = dataIDs(data <= obj.splitVal);
 rightDataIDs = dataIDs(data >  obj.splitVal);

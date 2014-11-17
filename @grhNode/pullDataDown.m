@@ -7,9 +7,9 @@ if obj.depth == 1
 else
     dataIDs = obj.parent.pullDataDown;
     if obj.leftRight
-        dataIDs = dataIDs(obj.data.getInputs(dataIDs, obj.parent.splitVar) >  obj.parent.splitVal);
+        dataIDs = dataIDs(obj.data.data(dataIDs, obj.parent.splitVar) >  obj.parent.splitVal);
     else
-        dataIDs = dataIDs(obj.data.getInputs(dataIDs, obj.parent.splitVar) <= obj.parent.splitVal);
+        dataIDs = dataIDs(obj.data.data(dataIDs, obj.parent.splitVar) <= obj.parent.splitVal);
     end
 end
     
