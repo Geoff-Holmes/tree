@@ -14,7 +14,6 @@ classdef grhNode < matlab.mixin.Copyable
         splitVal;
         Lchild = [];        % children
         Rchild = [];        %
-       
         plotHandle@uint8;     % to store graphics handle
         
     end

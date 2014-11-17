@@ -22,7 +22,7 @@ line(x(1)*[1;1], [y(1); y(1)-opts.d1])
 line(x(2)*[1;1], [y(1); y(1)-opts.d1])
 
 % test for continuance of left branch
-if ~isempty(obj.Lchild.splitVar)
+if obj.Lchild.splitVar
     % draw subnode
     limits = drawNode(obj.Lchild, [x(1) y(1)-opts.d2], opts);
     leftLim = limits(1);

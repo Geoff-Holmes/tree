@@ -24,7 +24,7 @@ if isempty(leftDataIDs)
    flagLeft = 1;
 else
     flagLeft = 0;
-    if ~isempty(obj.Lchild.splitVal)
+    if obj.Lchild.splitVal
         % not yet at leaf
         obj.Lchild.feedDataForward(leftDataIDs);
     else
@@ -41,7 +41,7 @@ else
     flagRight = 0;
     % update child data
 %     obj.Rchild.dataIDs = rightDataIDs;
-    if ~isempty(obj.Rchild.splitVal)
+    if obj.Rchild.splitVal
         % not yet at leaf
         obj.Rchild.feedDataForward(rightDataIDs);
     else
