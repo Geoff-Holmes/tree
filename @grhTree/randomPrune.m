@@ -20,7 +20,7 @@ while flag && counter < length(randLeafInds)
 %     fprintf('\nCandidate for pruning : parent of node %d', obj.leaves(randLeafInds(counter)))
     % discard if both children are not leaves
 %     flag = numel(compLeaf.Lchild.splitVar) + numel(compLeaf.Rchild.splitVar);
-    flag = ~(compLeaf.Lchild.splitVar && compLeaf.Rchild.splitVar);
+    flag = ~(~compLeaf.Lchild.splitVar && ~compLeaf.Rchild.splitVar);
 end
 
 fprintf('\nRemoving split at node %d : leaves %d - %d\n', compLeaf.ID, compLeaf.Lchild.ID, compLeaf.Rchild.ID)
