@@ -1,4 +1,4 @@
-function obj = randomPrune(obj)
+function [obj, ID] = randomPrune(obj)
 
 % random prune operation see gramacy_bayesian_2008 p1124
 
@@ -49,3 +49,6 @@ compLeaf.splitVal = [];
 
 % update tree depth
 obj.total_depth = max([obj.leaves.depth]);
+
+% output ID
+ID = compLeaf.ID;

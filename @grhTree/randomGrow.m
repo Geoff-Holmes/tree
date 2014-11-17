@@ -1,4 +1,4 @@
-function obj = randomGrow(obj)
+function [obj, dim, splitPoint] = randomGrow(obj)
 
 % random grow operation see gramacy_bayesian_2008 p1124
 

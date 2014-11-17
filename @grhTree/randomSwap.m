@@ -1,4 +1,4 @@
-function obj = randomSwap(obj)
+function [obj, childID] = randomSwap(obj)
 
 % random swap or rotate operation see gramacy_bayesian_2008 p1124
 % chipman_bayesian_1998 p941

@@ -1,4 +1,4 @@
-function obj = randomChange(obj)
+function [obj, parent, dim, splitPoint] = randomChange(obj)
 
 % random change operation see gramacy_bayesian_2008 p1125
 
