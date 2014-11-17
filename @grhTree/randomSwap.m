@@ -11,7 +11,8 @@ end
 
 % choose an internal parent-child pair
 % choose an internal child node
-children = setdiff(obj.nodes(2:end), obj.leaves);
+children = obj.nodes(logical([obj.nodes.splitVar]));
+children = children(2:end);
 try
 child = children(randi(length(children)));
 catch ex

@@ -10,7 +10,7 @@ classdef grhNode < matlab.mixin.Copyable
         data;               % handle to main data object
         dataIDs@uint16;     % data elements on this leaf / node
         model;              % handle to model applying if leaf
-        splitVar@uint8;
+        splitVar@uint8=uint8(0);
         splitVal;
         Lchild = [];        % children
         Rchild = [];        %

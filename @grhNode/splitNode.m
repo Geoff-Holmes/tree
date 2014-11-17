@@ -3,7 +3,7 @@ function obj = splitNode(obj, splitVar, splitVal)
 % form two new nodes by splitting calling node on variable splitVar at
 % value splitVal
 
-if isempty(obj.splitVar)
+if ~obj.splitVar
     % set the fields on parent node
     obj.splitVar = uint8(splitVar);
     obj.splitVal = splitVal;
@@ -30,5 +30,5 @@ if isempty(obj.splitVar)
     obj.dataIDs = uint16([]);
     
 else
-    % fprintf('\nNode is already split\n')
+    fprintf('\nNode is already split\n')
 end

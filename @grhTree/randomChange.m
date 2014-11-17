@@ -9,7 +9,8 @@ if obj.total_depth == 1
 end    
 
 % choose an internal node
-parents = setdiff(obj.nodes, obj.leaves);
+% parents = setdiff(obj.nodes, obj.leaves);
+parents = obj.nodes(logical([obj.nodes.splitVar]));
 parent = parents(randi(length(parents)));
 
 % fprintf('\nChanging split at node %d\n', parent.ID)
