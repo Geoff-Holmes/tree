@@ -14,5 +14,5 @@ end
 
 % in either case remove from node list and delete
 obj.tree.nodes = obj.tree.nodes(obj.tree.nodes~=obj);
-% fprintf('\nDeleting node %d\n', obj.ID)
+fprintf('\nDeleting node %d\n', obj.ID)
 delete(obj)

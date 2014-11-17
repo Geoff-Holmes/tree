@@ -5,7 +5,7 @@ function obj = randomSwap(obj)
 
 % check for not enough branches
 if obj.total_depth < 3
-    % fprintf('\nTree not deep enough to swap nodes.\n')
+    fprintf('\nTree not deep enough to swap nodes.\n')
     return
 end
 
@@ -39,7 +39,7 @@ if child.splitVar == child.parent.splitVar
 
     % if right child
     if child.leftRight == 0
-        % fprintf('\nRotating left nodes %d - %d\n', child.ID, child.parent.ID)
+        fprintf('\nRotating left nodes %d - %d\n', child.ID, child.parent.ID)
         tempChild = child.Rchild;,
         child.Rchild = child.Lchild;
         child.Rchild.leftRight = ~child.Lchild.leftRight;
@@ -53,7 +53,7 @@ if child.splitVar == child.parent.splitVar
         child.Lchild.adjustDepth(1);
         % otherwise left child    
     else % child.leftRight = 0
-        % fprintf('\nRotating right nodes %d - %d\n', child.ID, child.parent.ID)
+        fprintf('\nRotating right nodes %d - %d\n', child.ID, child.parent.ID)
         tempChild = child.Lchild;
         child.Lchild = child.Rchild;
         child.Lchild.leftRight = ~child.Lchild.leftRight;

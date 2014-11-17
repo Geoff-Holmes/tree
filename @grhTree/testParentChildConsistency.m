@@ -3,7 +3,7 @@ function obj = testParentChildConsistency(obj)
 % test for consistent parent child record between all nodes
 
 for node = obj.nodes(2:end)
-%     % fprintf('\nChecking child-parent-child from nodes %d\n', node.ID)
+%     fprintf('\nChecking child-parent-child from nodes %d\n', node.ID)
     try
         if node.leftRight
             assert(node.ID == node.parent.Rchild.ID)
@@ -23,7 +23,7 @@ for node = obj.nodes(2:end)
             cR= 0;
         end
         
-        % fprintf('\nrelation error: %s child %d - parent %d - children %d, %d\n', str, node.ID, node.parent.ID, cL, cR)
+        fprintf('\nrelation error: %s child %d - parent %d - children %d, %d\n', str, node.ID, node.parent.ID, cL, cR)
         
         obj.health.relationError = 1;
     end

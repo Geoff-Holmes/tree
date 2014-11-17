@@ -2,7 +2,7 @@ function obj = feedDataForward(obj, dataIDs)
 
 % after change of node splitting rule update data to leaves
 
-% fprintf('\nFeed forward from node %d', obj.ID)
+fprintf('\nFeed forward from node %d', obj.ID)
 
 % % split the data
 % leftData  = obj.data(obj.data(:,obj.splitVar) <= obj.splitVal, :);

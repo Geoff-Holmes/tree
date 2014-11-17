@@ -14,7 +14,7 @@ leaf = obj.leaves(randi(length(obj.leaves)));
     flag = numel(leaf.dataIDs) - 1 && rand <= obj.prior.a * double(leaf.depth) ^ -obj.prior.b;
 % end
 if ~flag
-    % fprintf('\nData already fully split.\n')
+    fprintf('\nNot splitting\n')
     return
 end
 
@@ -33,6 +33,6 @@ splitPoint = midpoints(randi(length(midpoints)));
 % and grow by splitting at that point
 leaf.splitNode(dim, splitPoint);
 
-% fprintf('\nGrowing from node %d, new leaves %d - %d\n', leaf.ID, leaf.Lchild.ID, leaf.Rchild.ID)
+fprintf('\nGrowing from node %d, new leaves %d - %d\n', leaf.ID, leaf.Lchild.ID, leaf.Rchild.ID)
 
 % model management to be added

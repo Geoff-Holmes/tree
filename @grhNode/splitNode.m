@@ -8,16 +8,12 @@ if ~obj.splitVar
     obj.splitVar = uint8(splitVar);
     obj.splitVal = splitVal;
 
-    if ~isempty(obj.dataIDs)
-        % get this nodes data on chosen variable / dimension
-        data = obj.data.data(obj.dataIDs, splitVar);
-        % split the data
-        leftDataIDs  = obj.dataIDs(data <= splitVal);
-        rightDataIDs = obj.dataIDs(data >  splitVal);
-    else
-        leftDataIDs  = [];
-        rightDataIDs = [];
-    end
+    % get this leafs data on chosen variable / dimension
+    data = obj.data.data(obj.dataIDs, splitVar);
+    % split the data
+    leftDataIDs  = obj.dataIDs(data <= splitVal);
+    rightDataIDs = obj.dataIDs(data >  splitVal);
+
     
     % permute parent model
     Lmodel = obj.model + randn(1,obj.data.input_dim+1);

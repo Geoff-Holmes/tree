@@ -11,7 +11,7 @@ while thisNode.depth > 1
     % ascertain relation to parent node
     if thisNode.leftRight, reln = '>'; else reln = '<='; end
     % output the applicable relationship
-    % fprintf('x%d %s %f\n', thisNode.parent.splitVar, reln, thisNode.parent.splitVal)
+    fprintf('x%d %s %f\n', thisNode.parent.splitVar, reln, thisNode.parent.splitVal)
     % step back up one level
     thisNode = thisNode.parent;
     
