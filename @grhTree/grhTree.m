@@ -2,6 +2,7 @@ classdef grhTree < matlab.mixin.Copyable
     
     properties
         
+        ID=false;           % dummy ID
         data;               % data
         total_depth = 1;    % depth of tree
         nodes;              % list of handles of all nodes incl leaves
@@ -50,8 +51,9 @@ classdef grhTree < matlab.mixin.Copyable
                 end
             end
             % link leaf list to copied node list
-            [~,leafIDs] = intersect(obj.nodes, obj.leaves);
-            cpObj.leaves = cpObj.nodes(leafIDs);
+            for i = 1:numel(obj.leaves.ID)
+                cpObj.leaves(i) = cpObj.nodes([obj.nodes.ID] == obj.leaves(i).ID);
+            end
             % remove any plot handles
             cpObj.plotHandle = [];
         end
