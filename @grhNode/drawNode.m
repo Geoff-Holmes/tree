@@ -36,7 +36,7 @@ else
 end
 
 % test for continuance of right branch
-if ~isempty(obj.Rchild.splitVar)
+if obj.Rchild.splitVar
     % draw subnode
     limits = drawNode(obj.Rchild, [x(2) y(1)-opts.d2], opts);
     rightLim = limits(2);
