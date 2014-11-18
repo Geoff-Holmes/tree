@@ -41,6 +41,8 @@ counter = 0;
 % animate tree
 while true
     
+    tic
+    
     if ~mod(counter, 20)
         subplot(sp2), cla; t.drawTree('subplot'); axis off;
         title(sprintf('p = [%.0f %.0f %.0f %.0f] : t.prior.b = %.2f', pp, t.prior.b))
@@ -96,6 +98,7 @@ v = v + a;
 % a = a / norm(a);
 view(v)
 
-pause(.01)
-
+if toc < .1
+    pause(.1-toc)
+end
 end
