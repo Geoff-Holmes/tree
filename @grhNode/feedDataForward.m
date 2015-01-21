@@ -9,7 +9,7 @@ function obj = feedDataForward(obj, dataIDs)
 % rightData = obj.data(obj.data(:,obj.splitVar) >  obj.splitVal, :);
 
 % get this nodes data on chosen variable / dimension
-data = obj.data.getInputs(dataIDs, obj.splitVar);
+data = obj.data.data(dataIDs, obj.splitVar);
 % split the data
 leftDataIDs  = dataIDs(data <= obj.splitVal);
 rightDataIDs = dataIDs(data >  obj.splitVal);
@@ -59,10 +59,10 @@ if flagLeft
     obj.Rchild.adjustDepth;
     if obj.leftRight
         obj.parent.Rchild = obj.Rchild;
-        obj.Rchild.leftRight = logical(1);
+        obj.Rchild.leftRight = true;
     else
         obj.parent.Lchild = obj.Rchild;
-        obj.Rchild.leftRight = logical(0);
+        obj.Rchild.leftRight = false;
     end
 else
     if flagRight
@@ -70,10 +70,10 @@ else
         obj.Lchild.adjustDepth;
         if obj.leftRight
             obj.parent.Rchild = obj.Lchild;
-            obj.Lchild.leftRight = logical(1);
+            obj.Lchild.leftRight = true;
         else
             obj.parent.Lchild = obj.Lchild;
-            obj.Lchild.leftRight = logical(0);
+            obj.Lchild.leftRight = false;
         end
     end
 end
